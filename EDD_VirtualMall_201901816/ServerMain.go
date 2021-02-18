@@ -38,10 +38,6 @@ func homePage(w http.ResponseWriter, r *http.Request){
 	fmt.Fprint(w, "EDD_VirtualMall_201901816")
 }
 
-func getArreglo(w http.ResponseWriter, r *http.Request){
-	fmt.Fprint(w, "[1,2,3,4]")
-}
-
 var Matriz [][][]Lista
 var Arreglo []Lista
 
@@ -87,6 +83,7 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 		}
 	}
 	//INGRESAMOS LA MATRIZ AL ARREGLO
+	Arreglo = make([]Lista, lenDep*lenInd*lenCal)
 	for i := 0; i < len(Matriz); i++{
 		for j := 0; j < len(Matriz[0]); j++{
 			for k := 0; k < len(Matriz[0][0]); k++{
@@ -94,16 +91,35 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 			}
 		}
 	}
-	for i:=0; i < len(Arreglo); i++{
-		Arreglo[i].Imprimir()
+}
+
+type BusquedaEspecifica struct{
+	Departamento string
+	Nombre string
+	Calificacion int
+}
+
+func TiendaEspecifica(w http.ResponseWriter, r *http.Request){
+	body, _ := ioutil.ReadAll(r.Body)
+	var Data BusquedaEspecifica
+	json.Unmarshal(body, &Data)
+	var TiendaAux Tiendas
+	for i := 0; i < len(Arreglo); i++{
+		if(Arreglo[i].Inicio != nil){
+			TiendaAux = Arreglo[i].FindName(Data.Departamento, Data.Calificacion)
+		}
+		TiendaAux = Arreglo[i].FindName(Data.Departamento, Data.Calificacion)
+		if TiendaAux != nil{
+			Json, err := json.Marshal(TiendaAux)
+		}
 	}
 }
 
 func request(){
 	Servidor := mux.NewRouter().StrictSlash(true)
 	Servidor.HandleFunc("/", homePage)
-	Servidor.HandleFunc("/GetArreglo", getArreglo).Methods("GET")
 	Servidor.HandleFunc("/cargartienda", CargarTienda).Methods("POST")
+	Servidor.HandleFunc("/TiendaEspecifica", TiendaEspecifica).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", Servidor))
 }
 
@@ -138,6 +154,22 @@ func (l *Lista) Add(valor Tiendas){
 		l.Fin = nuevo
 	}
 	l.len++
+}
+
+//BUSQUEDA POR NOMBRE
+func (l *Lista) FindName(nombre string, calificacion int) Tiendas{
+	Aux := l.Inicio
+	Encontrado := false
+	var tienda Tiendas
+	for Aux != nil || Encontrado != true{
+		if nombre == Aux.Dato.Nombre && calificacion == Aux.Dato.Calificacion{
+			Encontrado = true
+			tienda = Aux.Dato
+		}
+		Aux = Aux.Siguiente
+	}
+
+	return tienda
 }
 
 //IMPRIMIENDO LA LISTA PAPA
