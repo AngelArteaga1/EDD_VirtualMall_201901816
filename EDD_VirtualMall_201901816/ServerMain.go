@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 )
 
 type Tiendas struct{
@@ -91,6 +93,7 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 			}
 		}
 	}
+
 }
 
 type BusquedaEspecifica struct{
@@ -108,10 +111,43 @@ func TiendaEspecifica(w http.ResponseWriter, r *http.Request){
 		if(Arreglo[i].Inicio != nil){
 			TiendaAux = Arreglo[i].FindName(Data.Departamento, Data.Calificacion)
 		}
-		TiendaAux = Arreglo[i].FindName(Data.Departamento, Data.Calificacion)
-		if TiendaAux != nil{
-			Json, err := json.Marshal(TiendaAux)
+	}
+	fmt.Println(TiendaAux.Calificacion)
+}
+
+func GetArreglo(w http.ResponseWriter, r *http.Request){
+	for i := 0; i< len(Arreglo); i++{
+		fmt.Println("****************")
+		Arreglo[i].Imprimir()
+		fmt.Println("****************")
+	}
+	if Arreglo != nil{
+		//ESCRIBIMOS LAS PRIMAS COSAS DL GRAFO
+		f, err := os.Create("Grafica.dot")
+		Errores(err)
+		//w := bufio.NewWriter(f)
+		f.WriteString("digraph structs {\n")
+		f.WriteString("node [shape=record];\n")
+		//CREAMOS LA ESTRUCTURA GENERAL
+		struct1 := "struct [label=\""
+		for i :=0; i < len(Arreglo); i++{
+			if i == len(Arreglo)-1{
+				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> " + strconv.Itoa(i)
+			} else {
+				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> " + strconv.Itoa(i) + "|"
+			}
 		}
+		struct1 = struct1 + "\"];\n"
+		f.WriteString(struct1)
+		//CREAMOS LOS NODOS
+		for i := 0; i< len(Arreglo); i++ {
+			if Arreglo[i].Inicio != nil{
+				f.WriteString(Arreglo[i].GraphNodes(i))
+			}
+		}
+		f.WriteString("}")
+	} else {
+		fmt.Fprint(w, "Por favor ingrese sus tiendas primero")
 	}
 }
 
@@ -120,7 +156,15 @@ func request(){
 	Servidor.HandleFunc("/", homePage)
 	Servidor.HandleFunc("/cargartienda", CargarTienda).Methods("POST")
 	Servidor.HandleFunc("/TiendaEspecifica", TiendaEspecifica).Methods("POST")
+	Servidor.HandleFunc("/getArreglo", GetArreglo).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", Servidor))
+}
+
+
+func Errores(e error) {
+	if e != nil {
+		panic(e)
+	}
 }
 
 //CLASE NODO
@@ -181,4 +225,35 @@ func (l *Lista) Imprimir(){
 	}
 	fmt.Println()
 	fmt.Println("Tamaño de la lista: ", l.len)
+}
+
+//IMPRIMIENDO LOS NODOS EN GRAPHVIZ
+func (l *Lista) GraphNodes(i int) string{
+	Aux := l.Inicio
+	nodos := ""
+	j := 0
+	for Aux != nil{
+		nodos = nodos + "a" + strconv.Itoa(i) + "Node" + strconv.Itoa(j) + " [label=\""+ Aux.Dato.Nombre +"\"]\n"
+		j++
+		Aux = Aux.Siguiente
+	}
+	k := 0
+	nodos = nodos + "struct:f" + strconv.Itoa(i)
+	Aux = l.Inicio
+	for Aux != nil{
+		nodos = nodos + " -> a" + strconv.Itoa(i) + "Node" + strconv.Itoa(k)
+		k++
+		Aux = Aux.Siguiente
+	}
+	nodos = nodos + ";\n"
+	return nodos
+}
+
+//ESTA VACÍA
+func (l *Lista) IsEmpty() bool{
+	if l.Inicio == nil{
+		return true
+	} else {
+		return false
+	}
 }
