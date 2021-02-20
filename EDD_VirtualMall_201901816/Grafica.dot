@@ -1,11 +1,18 @@
 digraph structs {
-node [shape=record];
-struct [label="<f0> 0|<f1> 1|<f2> 2|<f3> 3|<f4> 4|<f5> 5|<f6> 6|<f7> 7|<f8> 8|<f9> 9|<f10> 10|<f11> 11|<f12> 12|<f13> 13|<f14> 14|<f15> 15|<f16> 16|<f17> 17|<f18> 18|<f19> 19|<f20> 20|<f21> 21|<f22> 22|<f23> 23|<f24> 24|<f25> 25|<f26> 26|<f27> 27|<f28> 28|<f29> 29"];
-a6Node0 [label="Aurora"]
-a6Node1 [label="Armados"]
-struct:f6 -> a6Node0 -> a6Node1;
-a8Node0 [label="A comer todo"]
-struct:f8 -> a8Node0;
-a11Node0 [label="Bayoneta"]
-struct:f11 -> a11Node0;
+node [shape=record, fontname="Bookman Old Style", style=filled, fillcolor=lightpink];
+edge [dir="both"]
+labelloc="t";
+label="Estructura de Datos";
+fontsize=30;
+struct [fillcolor=brown1, label="<f0> ___0___|<f1> ___1___|<f2> ___2___|<f3> ___3___|<f4> ___4___|<f5> ___5___|<f6> ___6___|<f7> ___7___|<f8> ___8___|<f9> ___9___|<f10> ___10___|<f11> ___11___|<f12> ___12___|<f13> ___13___|<f14> ___14___|<f15> ___15___|<f16> ___16___|<f17> ___17___|<f18> ___18___|<f19> ___19___|<f20> ___20___|<f21> ___21___|<f22> ___22___|<f23> ___23___|<f24> ___24___|<f25> ___25___|<f26> ___26___|<f27> ___27___|<f28> ___28___|<f29> ___29___"];
+a18Node0 [label="Amador"]
+struct:f18 -> a18Node0;
+a24Node0 [label="Aurora"]
+a24Node1 [label="Armados"]
+a24Node2 [label="Arboles"]
+struct:f24 -> a24Node0 -> a24Node1 -> a24Node2;
+a26Node0 [label="A comer todo"]
+struct:f26 -> a26Node0;
+a29Node0 [label="Bayoneta"]
+struct:f29 -> a29Node0;
 }

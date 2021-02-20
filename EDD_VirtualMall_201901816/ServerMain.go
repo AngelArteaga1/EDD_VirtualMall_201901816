@@ -8,8 +8,13 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/exec"
 	"strconv"
 )
+
+//VARIABLES GLOBALES
+var Matriz [][][]Lista
+var Arreglo []Lista
 
 type Tiendas struct{
 	Nombre string
@@ -36,12 +41,15 @@ func main() {
 	request()
 }
 
+type BusquedaEspecifica struct{
+	Departamento string
+	Nombre string
+	Calificacion int
+}
+
 func homePage(w http.ResponseWriter, r *http.Request){
 	fmt.Fprint(w, "EDD_VirtualMall_201901816")
 }
-
-var Matriz [][][]Lista
-var Arreglo []Lista
 
 func CargarTienda(w http.ResponseWriter, r *http.Request){
 	body, _ := ioutil.ReadAll(r.Body)
@@ -89,37 +97,87 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 	for i := 0; i < len(Matriz); i++{
 		for j := 0; j < len(Matriz[0]); j++{
 			for k := 0; k < len(Matriz[0][0]); k++{
-				Arreglo[i+len(Matriz)*(j+len(Matriz[0]))] = Matriz[i][j][k]
+				Arreglo[i+len(Matriz)*(j+len(Matriz[0])*k)] = Matriz[i][j][k]
 			}
 		}
 	}
-
-}
-
-type BusquedaEspecifica struct{
-	Departamento string
-	Nombre string
-	Calificacion int
 }
 
 func TiendaEspecifica(w http.ResponseWriter, r *http.Request){
-	body, _ := ioutil.ReadAll(r.Body)
-	var Data BusquedaEspecifica
-	json.Unmarshal(body, &Data)
-	var TiendaAux Tiendas
-	for i := 0; i < len(Arreglo); i++{
-		if(Arreglo[i].Inicio != nil){
-			TiendaAux = Arreglo[i].FindName(Data.Departamento, Data.Calificacion)
+	if Arreglo == nil{
+		fmt.Fprint(w, "Por favor, primero ingrese las tiendas")
+	} else {
+		body, _ := ioutil.ReadAll(r.Body)
+		var Data BusquedaEspecifica
+		json.Unmarshal(body, &Data)
+		var existe int
+		var tienda Tiendas
+		Encontrado := false
+		for i := 0; i < len(Arreglo); i++{
+			if(Arreglo[i].Inicio != nil){
+				existe = Arreglo[i].FindTienda(Data.Nombre, Data.Calificacion)
+				if existe == 1{
+					tienda = Arreglo[i].GetTienda(Data.Nombre, Data.Calificacion)
+					Encontrado = true
+				}
+			}
+		}
+		if Encontrado == false{
+			fmt.Fprint(w, "No se ha encontrado la tienda introducida :(")
+		} else {
+			TiendaEncontrada, err := json.Marshal(tienda)
+			Errores(err)
+			fmt.Fprint(w, string(TiendaEncontrada))
 		}
 	}
-	fmt.Println(TiendaAux.Calificacion)
+}
+
+func BusquedaPosicion(w http.ResponseWriter, r *http.Request){
+	if Arreglo == nil{
+		fmt.Fprint(w, "Por favor, primero ingrese las tiendas")
+	} else {
+		vars := mux.Vars(r)
+		var num string
+		num = string(vars["num"])
+		id, err := strconv.ParseInt(num,10,64)
+		Errores(err)
+		a := Arreglo[id].GetArray()
+		json, err1 := json.Marshal(a)
+		Errores(err1)
+		fmt.Fprint(w, string(json))
+	}
+}
+
+func Eliminar(w http.ResponseWriter, r *http.Request){
+	if Arreglo == nil{
+		fmt.Fprint(w, "Por favor, primero ingrese las tiendas")
+	} else {
+		body, _ := ioutil.ReadAll(r.Body)
+		var Data BusquedaEspecifica
+		json.Unmarshal(body, &Data)
+		var existe int
+		Encontrado := false
+		for i := 0; i < len(Arreglo); i++{
+			if(Arreglo[i].Inicio != nil){
+				existe = Arreglo[i].FindTienda(Data.Nombre, Data.Calificacion)
+				if existe == 1{
+					Arreglo[i].DeleteTienda(Data.Nombre, Data.Calificacion)
+					Encontrado = true
+				}
+			}
+		}
+		if Encontrado == false{
+			fmt.Fprint(w, "No se ha encontrado la tienda introducida :(")
+		} else {
+			fmt.Fprint(w, "La tienda ha sido eliminada exitosamente!")
+		}
+	}
 }
 
 func GetArreglo(w http.ResponseWriter, r *http.Request){
 	for i := 0; i< len(Arreglo); i++{
 		fmt.Println("****************")
 		Arreglo[i].Imprimir()
-		fmt.Println("****************")
 	}
 	if Arreglo != nil{
 		//ESCRIBIMOS LAS PRIMAS COSAS DL GRAFO
@@ -127,14 +185,16 @@ func GetArreglo(w http.ResponseWriter, r *http.Request){
 		Errores(err)
 		//w := bufio.NewWriter(f)
 		f.WriteString("digraph structs {\n")
-		f.WriteString("node [shape=record];\n")
+		f.WriteString("node [shape=record, fontname=\"Bookman Old Style\", " +
+			"style=filled, fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";" +
+			"\nlabel=\"Estructura de Datos\";\nfontsize=30;\n")
 		//CREAMOS LA ESTRUCTURA GENERAL
-		struct1 := "struct [label=\""
+		struct1 := "struct [fillcolor=brown1, label=\""
 		for i :=0; i < len(Arreglo); i++{
 			if i == len(Arreglo)-1{
-				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> " + strconv.Itoa(i)
+				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> ___" + strconv.Itoa(i) + "___"
 			} else {
-				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> " + strconv.Itoa(i) + "|"
+				struct1 = struct1 + "<f" + strconv.Itoa(i) + "> ___" + strconv.Itoa(i) + "___|"
 			}
 		}
 		struct1 = struct1 + "\"];\n"
@@ -146,6 +206,13 @@ func GetArreglo(w http.ResponseWriter, r *http.Request){
 			}
 		}
 		f.WriteString("}")
+		//cmd := exec.Command("dot -Tpdf Grafica.dot -o Grafica.pdf")
+		//cmd.Start()
+		path, _ := exec.LookPath("dot")
+		cmd, _ := exec.Command(path, "-Tsvg", "Grafica.dot").Output()
+		mode := int(0777)
+		ioutil.WriteFile("Grafica.svg", cmd, os.FileMode(mode))
+		fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 	} else {
 		fmt.Fprint(w, "Por favor ingrese sus tiendas primero")
 	}
@@ -157,6 +224,8 @@ func request(){
 	Servidor.HandleFunc("/cargartienda", CargarTienda).Methods("POST")
 	Servidor.HandleFunc("/TiendaEspecifica", TiendaEspecifica).Methods("POST")
 	Servidor.HandleFunc("/getArreglo", GetArreglo).Methods("GET")
+	Servidor.HandleFunc("/Eliminar", Eliminar).Methods("DELETE")
+	Servidor.HandleFunc("/id/{num:[0-9]+}", BusquedaPosicion).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", Servidor))
 }
 
@@ -200,8 +269,8 @@ func (l *Lista) Add(valor Tiendas){
 	l.len++
 }
 
-//BUSQUEDA POR NOMBRE
-func (l *Lista) FindName(nombre string, calificacion int) Tiendas{
+//BUSQUEDA POR NOMBRE Y CALIFICACION
+func (l *Lista) GetTienda(nombre string, calificacion int) Tiendas{
 	Aux := l.Inicio
 	Encontrado := false
 	var tienda Tiendas
@@ -212,8 +281,52 @@ func (l *Lista) FindName(nombre string, calificacion int) Tiendas{
 		}
 		Aux = Aux.Siguiente
 	}
-
 	return tienda
+}
+
+//ELIMINACION POR NOMBRE Y CALIFICACION
+func (l *Lista) DeleteTienda(nombre string, calificacion int){
+	Aux := l.Inicio
+	Encontrado := false
+	if Aux.Dato.Nombre == nombre && Aux.Dato.Calificacion == calificacion{
+		if Aux == l.Inicio && Aux == l.Fin{
+			l.Inicio = nil
+			l.Fin = nil
+			l.len--
+		} else {
+			Aux.Siguiente.Anterior = nil
+			l.Inicio = Aux.Siguiente
+			l.len--
+		}
+	} else {
+		for Aux != nil || Encontrado != true{
+			if nombre == Aux.Dato.Nombre && calificacion == Aux.Dato.Calificacion{
+				Encontrado = true
+				if Aux == l.Fin{
+					Aux.Anterior.Siguiente = nil
+					l.len--
+				} else {
+					Aux.Anterior.Siguiente = Aux.Siguiente
+					Aux.Siguiente.Anterior = Aux.Anterior
+					l.len--
+				}
+			}
+			Aux = Aux.Siguiente
+		}
+	}
+}
+
+//BUSQUEDA POR NOMBRE Y CALIFICACION
+func (l *Lista) FindTienda(nombre string, calificacion int) int{
+	Aux := l.Inicio
+	resultado := -1
+	for Aux != nil{
+		if nombre == Aux.Dato.Nombre && calificacion == Aux.Dato.Calificacion{
+			resultado = 1
+		}
+		Aux = Aux.Siguiente
+	}
+	return resultado
 }
 
 //IMPRIMIENDO LA LISTA PAPA
@@ -225,6 +338,19 @@ func (l *Lista) Imprimir(){
 	}
 	fmt.Println()
 	fmt.Println("Tamaño de la lista: ", l.len)
+}
+
+//OBTENER UN ARREGLO DE LA LISTA
+func (l *Lista) GetArray() []Tiendas{
+	a := make([]Tiendas, l.len)
+	i := 0
+	Aux := l.Inicio
+	for Aux != nil{
+		a[i] = Aux.Dato
+		i++
+		Aux = Aux.Siguiente
+	}
+	return a
 }
 
 //IMPRIMIENDO LOS NODOS EN GRAPHVIZ
