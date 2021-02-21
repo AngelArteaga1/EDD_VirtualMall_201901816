@@ -15,6 +15,11 @@ import (
 //VARIABLES GLOBALES
 var Matriz [][][]Lista
 var Arreglo []Lista
+var MPosiciones [][][]Posicion
+var APosiciones []Posicion
+var lenInd int
+var lenDep int
+var lenCal int
 
 type Tiendas struct{
 	Nombre string
@@ -37,6 +42,11 @@ type Archivo struct{
 	Datos []Datos
 }
 
+type Posicion struct {
+	Indice string
+	Departamento string
+}
+
 func main() {
 	request()
 }
@@ -55,13 +65,12 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 	body, _ := ioutil.ReadAll(r.Body)
 	var Data Archivo
 	json.Unmarshal(body, &Data)
-	fmt.Println(Data)
-	fmt.Fprint(w, Data.Datos[1].Indice)
+	//fmt.Println(Data)
 
 	//Necesitamos obtener el numero de categorias
-	lenInd := len(Data.Datos)
-	lenDep := len(Data.Datos[0].Departamentos)
-	lenCal := 5
+	lenInd = len(Data.Datos)
+	lenDep = len(Data.Datos[0].Departamentos)
+	lenCal = 5
 
 	//Creamos la matriz
 	Matriz = make([][][]Lista, lenInd)
@@ -75,23 +84,41 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 		}
 	}
 
+	//Creamos la matriz posiciones
+	MPosiciones = make([][][]Posicion, lenInd)
+	for i := 0; i < lenInd; i++{
+		MPosiciones[i] = make([][]Posicion, lenDep)
+		for j := 0; j < lenDep; j++{
+			MPosiciones[i][j] = make([]Posicion, lenCal)
+		}
+	}
 
-	fmt.Println("Indice: ",len(Matriz))
-	fmt.Println("Categoria: ",len(Matriz[0]))
-	fmt.Println("Calificacion: ",len(Matriz[0][0]))
-	fmt.Println("**********************************")
+	//fmt.Println("Indice: ",len(Matriz))
+	//fmt.Println("Categoria: ",len(Matriz[0]))
+	//fmt.Println("Calificacion: ",len(Matriz[0][0]))
+	//fmt.Println("**********************************")
 
 	//ingresamos las tiendas a la matriz
 	for i := 0; i < len(Data.Datos); i++{
 		for j := 0; j < len(Data.Datos[i].Departamentos); j++{
 			for k := 0; k < len(Data.Datos[i].Departamentos[j].Tiendas); k++{
-				fmt.Println("Posicion: ", i, ",", j, ",", Data.Datos[i].Departamentos[j].Tiendas[k].Calificacion - 1)
+				//fmt.Println("Posicion: ", i, ",", j, ",", Data.Datos[i].Departamentos[j].Tiendas[k].Calificacion - 1)
 				Matriz[i][j][Data.Datos[i].Departamentos[j].Tiendas[k].Calificacion - 1].Add(Data.Datos[i].Departamentos[j].Tiendas[k])
-				fmt.Println("Agregado: ", Data.Datos[i].Departamentos[j].Tiendas[k].Nombre)
-				fmt.Println("**********************************")
+				//fmt.Println("Agregado: ", Data.Datos[i].Departamentos[j].Tiendas[k].Nombre)
+				//fmt.Println("**********************************")
 			}
 		}
 	}
+
+	//DEJAMOS UNA REPLICA CON LAS COLUMNAS Y FILAS
+	for i := 0; i <lenInd; i++{
+		for j := 0; j < lenDep; j++{
+			for k := 0; k < lenCal; k++{
+				MPosiciones[i][j][k] = Posicion{Data.Datos[i].Indice,Data.Datos[i].Departamentos[j].Nombre}
+			}
+		}
+	}
+
 	//INGRESAMOS LA MATRIZ AL ARREGLO
 	Arreglo = make([]Lista, lenDep*lenInd*lenCal)
 	for i := 0; i < len(Matriz); i++{
@@ -101,6 +128,28 @@ func CargarTienda(w http.ResponseWriter, r *http.Request){
 			}
 		}
 	}
+
+	//INGRESAMOS LA MATRIZ AL ARREGLO DE POSICIONES
+	APosiciones = make([]Posicion, lenDep*lenInd*lenCal)
+	for i := 0; i < len(MPosiciones); i++{
+		for j := 0; j < len(MPosiciones[0]); j++{
+			for k := 0; k < len(MPosiciones[0][0]); k++{
+				APosiciones[i+len(MPosiciones)*(j+len(MPosiciones[0])*k)] = MPosiciones[i][j][k]
+			}
+		}
+	}
+
+	//IMPRIMIR LAS POSICIONES
+	for i := 0; i < len(MPosiciones); i++{
+		for j := 0; j < len(MPosiciones[0]); j++{
+			for k := 0; k < len(MPosiciones[0][0]); k++{
+				fmt.Println("*********************************")
+				fmt.Println("Posicion: ", i, ", ", j, ", ", k)
+				fmt.Println("Indice: ",MPosiciones[i][j][k].Indice, "Departamento: ",MPosiciones[i][j][k].Departamento)
+			}
+		}
+	}
+	fmt.Fprint(w, "Los datos han sido cargados exitosamente!")
 }
 
 func TiendaEspecifica(w http.ResponseWriter, r *http.Request){
@@ -141,10 +190,14 @@ func BusquedaPosicion(w http.ResponseWriter, r *http.Request){
 		num = string(vars["num"])
 		id, err := strconv.ParseInt(num,10,64)
 		Errores(err)
-		a := Arreglo[id].GetArray()
-		json, err1 := json.Marshal(a)
-		Errores(err1)
-		fmt.Fprint(w, string(json))
+		if int(id) >= len(Arreglo) || int(id)< 0{
+			fmt.Fprint(w, "Esa posición del arreglo no existe")
+		} else {
+			a := Arreglo[id].GetArray()
+			json, err1 := json.Marshal(a)
+			Errores(err1)
+			fmt.Fprint(w, string(json))
+		}
 	}
 }
 
@@ -218,6 +271,68 @@ func GetArreglo(w http.ResponseWriter, r *http.Request){
 	}
 }
 
+func GuardarDatos(w http.ResponseWriter, r *http.Request){
+	if Arreglo == nil{
+		fmt.Fprint(w, "Por favor, ingrese sus datos primero")
+	} else {
+
+		var tiendas [][]Lista
+		var ArrayTienda []Tiendas
+
+		//INICIALIZAMOS LAS TIENDAS
+		tiendas = make([][]Lista, lenInd)
+		for i := 0; i < lenInd; i++{
+			tiendas[i] = make([]Lista, lenDep)
+			for j := 0; j < lenDep; j++{
+				tiendas[i][j] = Lista{nil, nil, 0}
+			}
+		}
+
+		//OBTENEMOS TODAS LAS TIENDAS EN UN ARREGLO
+		for i := 0; i < len(Arreglo); i++{
+			if(Arreglo[i].Inicio != nil){
+				ArrayTienda = Arreglo[i].GetArray()
+				//fmt.Println(tiendas)
+				for j := 0; j < len(ArrayTienda); j++{
+					tiendas[GetPosicionIndice(i)][GetPosicionDepartamento(i)].Add(ArrayTienda[j])
+				}
+			}
+		}
+
+		/*
+		for i := 0; i < len(tiendas); i++{
+			for j := 0; j < len(tiendas[0]); j++{
+				fmt.Println("*********************")
+				fmt.Println("Posicion: ", i, ",", j)
+				tiendas[i][j].Imprimir()
+			}
+		}
+		*/
+
+		//JUNTAMOS EL STRUCT
+		var data Archivo
+		var indice []Datos
+		indice = make([]Datos, lenInd)
+		var departamentos []Departamentos
+		for i := 0; i < len(tiendas); i++{
+			departamentos = make([]Departamentos, lenDep)
+			for j := 0; j < len(tiendas[0]); j++{
+				ArrayTienda = tiendas[i][j].GetArray()
+				departamentos[j].Tiendas = ArrayTienda
+				departamentos[j].Nombre = MPosiciones[i][j][0].Departamento
+			}
+			//indice[i].Departamentos = make(departamentos)
+			indice[i].Departamentos = departamentos
+			indice[i].Indice = MPosiciones[i][0][0].Indice
+		}
+		data.Datos = indice
+		json, err := json.Marshal(data)
+		Errores(err)
+		fmt.Println(string(json))
+		fmt.Fprint(w, string(json))
+	}
+}
+
 func request(){
 	Servidor := mux.NewRouter().StrictSlash(true)
 	Servidor.HandleFunc("/", homePage)
@@ -226,9 +341,45 @@ func request(){
 	Servidor.HandleFunc("/getArreglo", GetArreglo).Methods("GET")
 	Servidor.HandleFunc("/Eliminar", Eliminar).Methods("DELETE")
 	Servidor.HandleFunc("/id/{num:[0-9]+}", BusquedaPosicion).Methods("GET")
+	Servidor.HandleFunc("/guardar", GuardarDatos).Methods("GET")
 	log.Fatal(http.ListenAndServe(":3000", Servidor))
 }
 
+func GetIndice(indice string)int{
+	for i:=0; i< lenInd; i++{
+		for j:=0; j< lenDep; j++{
+			for k:=0; k< lenCal; k++{
+				if indice == MPosiciones[i][j][k].Indice{
+					return i
+				}
+			}
+		}
+	}
+	return -1
+}
+
+func GetDepartamento(departamento string)int{
+	for i:=0; i< lenInd; i++{
+		for j:=0; j< lenDep; j++{
+			for k:=0; k< lenCal; k++{
+				if departamento == MPosiciones[i][j][k].Departamento{
+					return j
+				}
+			}
+		}
+	}
+	return -1
+}
+
+func GetPosicionIndice(posicion int)int{
+	indice := APosiciones[posicion].Indice
+	return GetIndice(indice)
+}
+
+func GetPosicionDepartamento(posicion int)int{
+	departamento := APosiciones[posicion].Departamento
+	return GetDepartamento(departamento)
+}
 
 func Errores(e error) {
 	if e != nil {
