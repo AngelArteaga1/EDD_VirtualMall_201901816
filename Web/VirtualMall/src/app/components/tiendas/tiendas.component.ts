@@ -14,7 +14,7 @@ export class TiendasComponent implements OnInit {
   mostrarMensajeError = false
   mostrarMensajeExito = false
   listaTiendas: Tienda[]
-  comment: string = "<p></p>"
+  comment: string = ""
 
   constructor(private TiendasService: GetTiendasService) { 
     

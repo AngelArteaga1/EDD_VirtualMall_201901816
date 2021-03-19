@@ -13,8 +13,12 @@ import { Producto } from 'src/app/models/productos/producto'
 export class ProductosComponent implements OnInit {
 
   store: TiendaEspecifica
-  comment: string;
+  comment: string = "";
   productos: Producto[]
+  logo: string =""
+  //nombreTienda: string = ""
+  descripcion: string = ""
+  contacto: string = ""
   mostrarMensajeError = false
 
   constructor(private rutaActiva: ActivatedRoute, private TiendasService: GetTiendasService) { 
@@ -30,30 +34,43 @@ export class ProductosComponent implements OnInit {
         this.store.Calificacion = Number(params.calificacion);
       }
     );
-    console.log("Dale papi: ", this.store.Calificacion);
-    console.log(this.store)
-    console.log("Dale papi + 1: ", this.store.Calificacion + 1)
-    this.TiendasService.getListaProductos(this.store).subscribe((dataList:any)=>{
+
+    this.TiendasService.getTiendaEspecifica(this.store).subscribe((dataList:any)=>{
+      this.descripcion = dataList.Descripcion
+      this.logo = dataList.Logo
+      this.contacto = dataList.Contacto
+    }, (err) => {
+      this.mostrarMensajeError = true
+      console.log("Adios bb")
+    })
+
+    //console.log("Dale papi: ", this.store.Calificacion);
+    //console.log(this.store)
+    //console.log("Dale papi + 1: ", this.store.Calificacion + 1)
+
+    this.TiendasService.getListaProductos(this.store).subscribe((dataList:Producto[])=>{
       console.log(dataList)
       this.productos = dataList;
       console.log("cantidad de la lista: ", this.productos.length)
       let contador = 0
       let i = 0
       for (let product of this.productos) {
+        //PARA SABER EL RATING
         if (contador == 0){
           this.comment = this.comment + '<div class="row text-center">'
         }
         this.comment = this.comment + 
         '<div class="card col-3">'+
-                '<img src="' + product.Imagen + '" class="card-img-top" alt="...">'+
-                '<div class="card-body">'+
-                '<h5 class="card-title">' + product.Nombre + '</h5>'+
-                '<p class="card-text">' + product.Descripcion + '</p>'+
-                '<a href="#" class="btn btn-primary">Comprar</a>'+
-                '</div>'
-            '</div>'
+            '<img src="' + product.Imagen + '" class="card-img-top" alt="products">'+
+            '<div class="card-body">'+
+              '<h5 class="card-title">' + product.Nombre + '</h5>'+
+              '<p class="card-text">' + product.Descripcion + '</p>'+
+              '<p class="text-success">Precio: Q' + product.Precio + '</p>'+
+              '<a href="#" class="btn btn-primary">Comprar</a>'+
+            '</div>'+
+        '</div>'
         if (contador == 3 || i == this.productos.length - 1){
-          this.comment = this.comment + '</div>\n<br><hr class="featurette-divider"><br>'
+          this.comment = this.comment + '</div>\n<hr class="featurette-divider"><br>'
           contador = 0
         } else {
           contador++

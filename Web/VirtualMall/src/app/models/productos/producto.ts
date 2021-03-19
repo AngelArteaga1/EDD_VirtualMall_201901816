@@ -1,4 +1,5 @@
 export class Producto {
+    
     Nombre: string
     Codigo: number
     Descripcion: string
