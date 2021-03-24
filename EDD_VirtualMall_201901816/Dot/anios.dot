@@ -1,0 +1,16 @@
+digraph anios {
+rankdir=UD
+node[shape=box]
+concentrate=true
+nodo2019 [ label ="2019"];
+nodo2017 [ label ="2017"];
+nodo1999 [ label ="1999"];
+nodo2017->nodo1999
+nodo2018 [ label ="2018"];
+nodo2017->nodo2018
+nodo2019->nodo2017
+nodo2021 [ label ="2021"];
+nodo2020 [ label ="2020"];
+nodo2021->nodo2020
+nodo2019->nodo2021
+}

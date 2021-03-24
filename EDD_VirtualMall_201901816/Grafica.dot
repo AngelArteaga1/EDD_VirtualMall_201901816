@@ -4,15 +4,1230 @@ edge [dir="both"]
 labelloc="t";
 label="Estructura de Datos";
 fontsize=30;
-struct [fillcolor=brown1, label="<f0> ___0___|<f1> ___1___|<f2> ___2___|<f3> ___3___|<f4> ___4___|<f5> ___5___|<f6> ___6___|<f7> ___7___|<f8> ___8___|<f9> ___9___|<f10> ___10___|<f11> ___11___|<f12> ___12___|<f13> ___13___|<f14> ___14___|<f15> ___15___|<f16> ___16___|<f17> ___17___|<f18> ___18___|<f19> ___19___|<f20> ___20___|<f21> ___21___|<f22> ___22___|<f23> ___23___|<f24> ___24___|<f25> ___25___|<f26> ___26___|<f27> ___27___|<f28> ___28___|<f29> ___29___"];
-a18Node0 [label="Amador"]
-struct:f18 -> a18Node0;
-a24Node0 [label="Aurora"]
-a24Node1 [label="Armados"]
-a24Node2 [label="Arboles"]
-struct:f24 -> a24Node0 -> a24Node1 -> a24Node2;
-a26Node0 [label="A comer todo"]
+struct [fillcolor=brown1, label="<f0> ___0___|<f1> ___1___|<f2> ___2___|<f3> ___3___|<f4> ___4___|<f5> ___5___|<f6> ___6___|<f7> ___7___|<f8> ___8___|<f9> ___9___|<f10> ___10___|<f11> ___11___|<f12> ___12___|<f13> ___13___|<f14> ___14___|<f15> ___15___|<f16> ___16___|<f17> ___17___|<f18> ___18___|<f19> ___19___|<f20> ___20___|<f21> ___21___|<f22> ___22___|<f23> ___23___|<f24> ___24___|<f25> ___25___|<f26> ___26___|<f27> ___27___|<f28> ___28___|<f29> ___29___|<f30> ___30___|<f31> ___31___|<f32> ___32___|<f33> ___33___|<f34> ___34___|<f35> ___35___|<f36> ___36___|<f37> ___37___|<f38> ___38___|<f39> ___39___|<f40> ___40___|<f41> ___41___|<f42> ___42___|<f43> ___43___|<f44> ___44___|<f45> ___45___|<f46> ___46___|<f47> ___47___|<f48> ___48___|<f49> ___49___|<f50> ___50___|<f51> ___51___|<f52> ___52___|<f53> ___53___|<f54> ___54___|<f55> ___55___|<f56> ___56___|<f57> ___57___|<f58> ___58___|<f59> ___59___|<f60> ___60___|<f61> ___61___|<f62> ___62___|<f63> ___63___|<f64> ___64___|<f65> ___65___|<f66> ___66___|<f67> ___67___|<f68> ___68___|<f69> ___69___|<f70> ___70___|<f71> ___71___|<f72> ___72___|<f73> ___73___|<f74> ___74___|<f75> ___75___|<f76> ___76___|<f77> ___77___|<f78> ___78___|<f79> ___79___|<f80> ___80___|<f81> ___81___|<f82> ___82___|<f83> ___83___|<f84> ___84___|<f85> ___85___|<f86> ___86___|<f87> ___87___|<f88> ___88___|<f89> ___89___|<f90> ___90___|<f91> ___91___|<f92> ___92___|<f93> ___93___|<f94> ___94___|<f95> ___95___|<f96> ___96___|<f97> ___97___|<f98> ___98___|<f99> ___99___|<f100> ___100___|<f101> ___101___|<f102> ___102___|<f103> ___103___|<f104> ___104___|<f105> ___105___|<f106> ___106___|<f107> ___107___|<f108> ___108___|<f109> ___109___|<f110> ___110___|<f111> ___111___|<f112> ___112___|<f113> ___113___|<f114> ___114___|<f115> ___115___|<f116> ___116___|<f117> ___117___|<f118> ___118___|<f119> ___119___|<f120> ___120___|<f121> ___121___|<f122> ___122___|<f123> ___123___|<f124> ___124___|<f125> ___125___|<f126> ___126___|<f127> ___127___|<f128> ___128___|<f129> ___129___|<f130> ___130___|<f131> ___131___|<f132> ___132___|<f133> ___133___|<f134> ___134___|<f135> ___135___|<f136> ___136___|<f137> ___137___|<f138> ___138___|<f139> ___139___|<f140> ___140___|<f141> ___141___|<f142> ___142___|<f143> ___143___|<f144> ___144___|<f145> ___145___|<f146> ___146___|<f147> ___147___|<f148> ___148___|<f149> ___149___|<f150> ___150___|<f151> ___151___|<f152> ___152___|<f153> ___153___|<f154> ___154___|<f155> ___155___|<f156> ___156___|<f157> ___157___|<f158> ___158___|<f159> ___159___|<f160> ___160___|<f161> ___161___|<f162> ___162___|<f163> ___163___|<f164> ___164___|<f165> ___165___|<f166> ___166___|<f167> ___167___|<f168> ___168___|<f169> ___169___|<f170> ___170___|<f171> ___171___|<f172> ___172___|<f173> ___173___|<f174> ___174___|<f175> ___175___|<f176> ___176___|<f177> ___177___|<f178> ___178___|<f179> ___179___|<f180> ___180___|<f181> ___181___|<f182> ___182___|<f183> ___183___|<f184> ___184___|<f185> ___185___|<f186> ___186___|<f187> ___187___|<f188> ___188___|<f189> ___189___|<f190> ___190___|<f191> ___191___|<f192> ___192___|<f193> ___193___|<f194> ___194___|<f195> ___195___|<f196> ___196___|<f197> ___197___|<f198> ___198___|<f199> ___199___|<f200> ___200___|<f201> ___201___|<f202> ___202___|<f203> ___203___|<f204> ___204___|<f205> ___205___|<f206> ___206___|<f207> ___207___|<f208> ___208___|<f209> ___209___|<f210> ___210___|<f211> ___211___|<f212> ___212___|<f213> ___213___|<f214> ___214___|<f215> ___215___|<f216> ___216___|<f217> ___217___|<f218> ___218___|<f219> ___219___|<f220> ___220___|<f221> ___221___|<f222> ___222___|<f223> ___223___|<f224> ___224___|<f225> ___225___|<f226> ___226___|<f227> ___227___|<f228> ___228___|<f229> ___229___|<f230> ___230___|<f231> ___231___|<f232> ___232___|<f233> ___233___|<f234> ___234___|<f235> ___235___|<f236> ___236___|<f237> ___237___|<f238> ___238___|<f239> ___239___|<f240> ___240___|<f241> ___241___|<f242> ___242___|<f243> ___243___|<f244> ___244___|<f245> ___245___|<f246> ___246___|<f247> ___247___|<f248> ___248___|<f249> ___249___|<f250> ___250___|<f251> ___251___|<f252> ___252___|<f253> ___253___|<f254> ___254___|<f255> ___255___|<f256> ___256___|<f257> ___257___|<f258> ___258___|<f259> ___259___|<f260> ___260___|<f261> ___261___|<f262> ___262___|<f263> ___263___|<f264> ___264___|<f265> ___265___|<f266> ___266___|<f267> ___267___|<f268> ___268___|<f269> ___269___|<f270> ___270___|<f271> ___271___|<f272> ___272___|<f273> ___273___|<f274> ___274___|<f275> ___275___|<f276> ___276___|<f277> ___277___|<f278> ___278___|<f279> ___279___|<f280> ___280___|<f281> ___281___|<f282> ___282___|<f283> ___283___|<f284> ___284___|<f285> ___285___|<f286> ___286___|<f287> ___287___|<f288> ___288___|<f289> ___289___|<f290> ___290___|<f291> ___291___|<f292> ___292___|<f293> ___293___|<f294> ___294___|<f295> ___295___|<f296> ___296___|<f297> ___297___|<f298> ___298___|<f299> ___299___|<f300> ___300___|<f301> ___301___|<f302> ___302___|<f303> ___303___|<f304> ___304___|<f305> ___305___|<f306> ___306___|<f307> ___307___|<f308> ___308___|<f309> ___309___|<f310> ___310___|<f311> ___311___|<f312> ___312___|<f313> ___313___|<f314> ___314___|<f315> ___315___|<f316> ___316___|<f317> ___317___|<f318> ___318___|<f319> ___319___|<f320> ___320___|<f321> ___321___|<f322> ___322___|<f323> ___323___|<f324> ___324___"];
+a0Node0 [label="Anguiano, Longoria y Blanco Asociados"]
+struct:f0 -> a0Node0;
+a1Node0 [label="Baca, Soria y Alvarez Asociados"]
+a1Node1 [label="Bustos e Hijos"]
+a1Node2 [label="Borrego López S.L."]
+struct:f1 -> a1Node0 -> a1Node1 -> a1Node2;
+a2Node0 [label="Corrales Mojica S.A."]
+a2Node1 [label="Cortés, Menéndez y Rael Asociados"]
+a2Node2 [label="Castillo Solís S.L."]
+struct:f2 -> a2Node0 -> a2Node1 -> a2Node2;
+a3Node0 [label="Delatorre Venegas Hermanos"]
+struct:f3 -> a3Node0;
+a4Node0 [label="Escamilla Pichardo S.L."]
+a4Node1 [label="Esquivel y Carreón"]
+a4Node2 [label="Espinoza, Ceja y Villa Asociados"]
+struct:f4 -> a4Node0 -> a4Node1 -> a4Node2;
+a5Node0 [label="Figueroa Serna S.L."]
+struct:f5 -> a5Node0;
+a6Node0 [label="Galindo, Valentín y Quintero Asociados"]
+a6Node1 [label="Garza Toro e Hijos"]
+a6Node2 [label="Guerrero y Serna"]
+struct:f6 -> a6Node0 -> a6Node1 -> a6Node2;
+a7Node0 [label="Haro y Rodrígez"]
+a7Node1 [label="Herrera Reynoso Hermanos"]
+a7Node2 [label="Hinojosa y Solorzano"]
+a7Node3 [label="Holguín Saiz e Hijos"]
+a7Node4 [label="Haro y Espinal"]
+struct:f7 -> a7Node0 -> a7Node1 -> a7Node2 -> a7Node3 -> a7Node4;
+a8Node0 [label="Irizarry y Treviño"]
+a8Node1 [label="Iglesias, Valdés y Echevarría Asociados"]
+a8Node2 [label="Iglesias y Téllez"]
+a8Node3 [label="Irizarry, Barreto y Arriaga Asociados"]
+a8Node4 [label="Ibarra Varela Hermanos"]
+a8Node5 [label="Ibarra y Páez"]
+a8Node6 [label="Irizarry, Chacón y Velasco Asociados"]
+a8Node7 [label="Irizarry y Almaraz"]
+struct:f8 -> a8Node0 -> a8Node1 -> a8Node2 -> a8Node3 -> a8Node4 -> a8Node5 -> a8Node6 -> a8Node7;
+a9Node0 [label="Jasso, Atencio y Navarrete Asociados"]
+a9Node1 [label="Juárez Aparicio Hermanos"]
+a9Node2 [label="Jiménez y Montemayor"]
+struct:f9 -> a9Node0 -> a9Node1 -> a9Node2;
+a13Node0 [label="Anguiano, Longoria y Blanco Asociados"]
+a13Node1 [label="Arenas Crespo S.A."]
+struct:f13 -> a13Node0 -> a13Node1;
+a14Node0 [label="Bustos y León"]
+a14Node1 [label="Barragán y Adorno"]
+a14Node2 [label="Beltrán Sevilla e Hijos"]
+a14Node3 [label="Bañuelos y Peralta"]
+a14Node4 [label="Barajas, Varela y Negrete Asociados"]
+struct:f14 -> a14Node0 -> a14Node1 -> a14Node2 -> a14Node3 -> a14Node4;
+a15Node0 [label="Camacho Verdugo S.A."]
+struct:f15 -> a15Node0;
+a16Node0 [label="Delagarza y Marrero"]
+a16Node1 [label="de Anda Becerra S.L."]
+a16Node2 [label="Duran Esquivel e Hijos"]
+a16Node3 [label="Delacrúz S.A."]
+a16Node4 [label="Domínguez, Aguilera y Urías Asociados"]
+a16Node5 [label="Dueñas y Delafuente"]
+struct:f16 -> a16Node0 -> a16Node1 -> a16Node2 -> a16Node3 -> a16Node4 -> a16Node5;
+a17Node0 [label="Esquivel y Rojas"]
+a17Node1 [label="Echevarría, Varela y Rivera Asociados"]
+a17Node2 [label="Esparza y Vera"]
+a17Node3 [label="Espinoza y Zambrano"]
+a17Node4 [label="Espinosa y Delao"]
+struct:f17 -> a17Node0 -> a17Node1 -> a17Node2 -> a17Node3 -> a17Node4;
+a18Node0 [label="Fajardo y Delapaz"]
+a18Node1 [label="Flórez Alba S.A."]
+a18Node2 [label="Figueroa, Nazario y Gaitán Asociados"]
+a18Node3 [label="Fonseca S.L."]
+struct:f18 -> a18Node0 -> a18Node1 -> a18Node2 -> a18Node3;
+a19Node0 [label="Galindo, Correa y Ruelas Asociados"]
+struct:f19 -> a19Node0;
+a20Node0 [label="Haro y Villegas"]
+a20Node1 [label="Holguín y Gallegos"]
+a20Node2 [label="Herrera Reynoso Hermanos"]
+struct:f20 -> a20Node0 -> a20Node1 -> a20Node2;
+a21Node0 [label="Ibarra y Jaimes"]
+a21Node1 [label="Iglesias, Valdés y Echevarría Asociados"]
+a21Node2 [label="Iglesias y Téllez"]
+a21Node3 [label="Ibarra y Solano"]
+struct:f21 -> a21Node0 -> a21Node1 -> a21Node2 -> a21Node3;
+a22Node0 [label="Jaime, Cavazos y Galván Asociados"]
+a22Node1 [label="Jurado y Matos"]
+a22Node2 [label="Jiménez y Rangel"]
+struct:f22 -> a22Node0 -> a22Node1 -> a22Node2;
+a24Node0 [label="Luna e Hijos"]
+struct:f24 -> a24Node0;
+a25Node0 [label="Murillo Domínguez S.L."]
+a25Node1 [label="Martínez Rojas S.L."]
+a25Node2 [label="Menéndez Valencia Hermanos"]
+a25Node3 [label="Muñoz y Bermúdez"]
+a25Node4 [label="Montaño, Ferrer y Varela Asociados"]
+a25Node5 [label="Mayorga Rivera S.L."]
+a25Node6 [label="Manzanares, Trujillo y Escamilla Asociados"]
+struct:f25 -> a25Node0 -> a25Node1 -> a25Node2 -> a25Node3 -> a25Node4 -> a25Node5 -> a25Node6;
+a26Node0 [label="Almanza Cavazos Hermanos"]
 struct:f26 -> a26Node0;
-a29Node0 [label="Bayoneta"]
-struct:f29 -> a29Node0;
+a27Node0 [label="Baca, Soria y Alvarez Asociados"]
+a27Node1 [label="Badillo y Montez"]
+a27Node2 [label="Beltrán Sevilla e Hijos"]
+a27Node3 [label="Báez y Anaya"]
+a27Node4 [label="Becerra, Rendón y Blanco Asociados"]
+a27Node5 [label="Barajas, Varela y Negrete Asociados"]
+struct:f27 -> a27Node0 -> a27Node1 -> a27Node2 -> a27Node3 -> a27Node4 -> a27Node5;
+a28Node0 [label="Corrales Mojica S.A."]
+a28Node1 [label="Cintrón Carrero S.L."]
+struct:f28 -> a28Node0 -> a28Node1;
+a29Node0 [label="Delagarza y Marrero"]
+a29Node1 [label="Duran, Gómez y Ulibarri Asociados"]
+a29Node2 [label="Delarosa, Centeno y Ferrer Asociados"]
+a29Node3 [label="Dueñas, Ponce y Molina Asociados"]
+a29Node4 [label="Delgadillo y Sanches"]
+struct:f29 -> a29Node0 -> a29Node1 -> a29Node2 -> a29Node3 -> a29Node4;
+a30Node0 [label="Espinoza y Alvarez"]
+a30Node1 [label="Espino y Tejada"]
+struct:f30 -> a30Node0 -> a30Node1;
+a31Node0 [label="Fajardo y Delapaz"]
+a31Node1 [label="Fajardo, Santacruz y Sepúlveda Asociados"]
+a31Node2 [label="Farías Castro S.A."]
+struct:f31 -> a31Node0 -> a31Node1 -> a31Node2;
+a32Node0 [label="Godoy Acuña S.A."]
+a32Node1 [label="Garza Toro e Hijos"]
+a32Node2 [label="Gollum Galván S.A."]
+a32Node3 [label="Guerrero y Serna"]
+a32Node4 [label="Guevara Solorio Hermanos"]
+struct:f32 -> a32Node0 -> a32Node1 -> a32Node2 -> a32Node3 -> a32Node4;
+a33Node0 [label="Herrera S.A."]
+struct:f33 -> a33Node0;
+a34Node0 [label="Iglesias, Valdés y Echevarría Asociados"]
+a34Node1 [label="Iglesias y Téllez"]
+a34Node2 [label="Iglesias y Valentín"]
+a34Node3 [label="Iglesias y Sarabia"]
+a34Node4 [label="Iglesias Delacrúz e Hijos"]
+a34Node5 [label="Iglesias Hermanos"]
+a34Node6 [label="Irizarry Tello S.L."]
+struct:f34 -> a34Node0 -> a34Node1 -> a34Node2 -> a34Node3 -> a34Node4 -> a34Node5 -> a34Node6;
+a35Node0 [label="Jaramillo y Mascareñas"]
+a35Node1 [label="Juárez y Hurtado"]
+a35Node2 [label="Jiménez y Rangel"]
+struct:f35 -> a35Node0 -> a35Node1 -> a35Node2;
+a37Node0 [label="Leiva y Miranda"]
+a37Node1 [label="Linares e Hijos"]
+a37Node2 [label="Laureano Madera S.L."]
+a37Node3 [label="Lebrón y Armendáriz"]
+a37Node4 [label="Lomeli Garay Hermanos"]
+a37Node5 [label="Lozada Loera S.A."]
+a37Node6 [label="Lugo, Soria y Menéndez Asociados"]
+a37Node7 [label="Longoria e Hijos"]
+a37Node8 [label="Loya, Márquez y Madrid Asociados"]
+struct:f37 -> a37Node0 -> a37Node1 -> a37Node2 -> a37Node3 -> a37Node4 -> a37Node5 -> a37Node6 -> a37Node7 -> a37Node8;
+a38Node0 [label="Mondragón y Rentería"]
+a38Node1 [label="Martínez Rojas S.L."]
+struct:f38 -> a38Node0 -> a38Node1;
+a39Node0 [label="Atencio Carrasco S.L."]
+a39Node1 [label="Apodaca, Camacho y Pedroza Asociados"]
+a39Node2 [label="Arreola Abrego S.A."]
+a39Node3 [label="Abeyta, Jáquez y Samaniego Asociados"]
+a39Node4 [label="Aguilera y Sotelo"]
+a39Node5 [label="Arenas y Altamirano"]
+a39Node6 [label="Alarcón Menéndez e Hijos"]
+struct:f39 -> a39Node0 -> a39Node1 -> a39Node2 -> a39Node3 -> a39Node4 -> a39Node5 -> a39Node6;
+a40Node0 [label="Bétancourt Palacios Hermanos"]
+a40Node1 [label="Barragán y Adorno"]
+struct:f40 -> a40Node0 -> a40Node1;
+a41Node0 [label="Cadena, Colón y Olivo Asociados"]
+a41Node1 [label="Camacho Verdugo S.A."]
+a41Node2 [label="Cornejo, López y Orta Asociados"]
+a41Node3 [label="Carrasco y Villareal"]
+struct:f41 -> a41Node0 -> a41Node1 -> a41Node2 -> a41Node3;
+a42Node0 [label="Delatorre Venegas Hermanos"]
+a42Node1 [label="Duran, Gómez y Ulibarri Asociados"]
+struct:f42 -> a42Node0 -> a42Node1;
+a43Node0 [label="Espino Castro S.A."]
+a43Node1 [label="Echevarría, Menéndez y Yáñez Asociados"]
+a43Node2 [label="Esquibel y Lemus"]
+struct:f43 -> a43Node0 -> a43Node1 -> a43Node2;
+a44Node0 [label="Flórez, Sauceda y Quiñónez Asociados"]
+a44Node1 [label="Farías Castro S.A."]
+struct:f44 -> a44Node0 -> a44Node1;
+a45Node0 [label="Galindo, Correa y Ruelas Asociados"]
+a45Node1 [label="Gallegos Quezada e Hijos"]
+struct:f45 -> a45Node0 -> a45Node1;
+a46Node0 [label="Herrera, Sanabria y Toledo Asociados"]
+a46Node1 [label="Holguín y Gallegos"]
+a46Node2 [label="Huerta e Hijos"]
+a46Node3 [label="Hinojosa Llamas e Hijos"]
+a46Node4 [label="Hurtado y Quiñones"]
+struct:f46 -> a46Node0 -> a46Node1 -> a46Node2 -> a46Node3 -> a46Node4;
+a47Node0 [label="Ibarra, Fernández y León Asociados"]
+a47Node1 [label="Ibarra y Solano"]
+struct:f47 -> a47Node0 -> a47Node1;
+a48Node0 [label="Jaramillo y Mascareñas"]
+a48Node1 [label="Jaimes Bahena e Hijos"]
+struct:f48 -> a48Node0 -> a48Node1;
+a50Node0 [label="Lira Corrales Hermanos"]
+struct:f50 -> a50Node0;
+a52Node0 [label="Almanza Cavazos Hermanos"]
+a52Node1 [label="Alonso y Juárez"]
+a52Node2 [label="Apodaca y Almonte"]
+a52Node3 [label="Arenas Crespo S.A."]
+a52Node4 [label="Aponte Juárez S.A."]
+a52Node5 [label="Apodaca, Camacho y Pedroza Asociados"]
+struct:f52 -> a52Node0 -> a52Node1 -> a52Node2 -> a52Node3 -> a52Node4 -> a52Node5;
+a53Node0 [label="Bustos e Hijos"]
+struct:f53 -> a53Node0;
+a54Node0 [label="Colón y Moreno"]
+struct:f54 -> a54Node0;
+a55Node0 [label="Delagarza y Marrero"]
+a55Node1 [label="Dueñas, Esquivel y Morales Asociados"]
+a55Node2 [label="Delapaz Arevalo Hermanos"]
+a55Node3 [label="Delgadillo y Alaniz"]
+struct:f55 -> a55Node0 -> a55Node1 -> a55Node2 -> a55Node3;
+a56Node0 [label="Esquivel y Rojas"]
+a56Node1 [label="Estrada, Dávila y Partida Asociados"]
+a56Node2 [label="Esquibel y Lemus"]
+a56Node3 [label="Esparza y Vera"]
+a56Node4 [label="Espinosa y Delao"]
+struct:f56 -> a56Node0 -> a56Node1 -> a56Node2 -> a56Node3 -> a56Node4;
+a57Node0 [label="Figueroa S.L."]
+struct:f57 -> a57Node0;
+a58Node0 [label="Guerrero y Serna"]
+a58Node1 [label="Gaytán, Trejo y Esquibel Asociados"]
+a58Node2 [label="Gollum y Carvajal"]
+struct:f58 -> a58Node0 -> a58Node1 -> a58Node2;
+a59Node0 [label="Heredia y Angulo"]
+a59Node1 [label="Herrera S.A."]
+a59Node2 [label="Haro S.L."]
+a59Node3 [label="Huerta, Tirado y Ozuna Asociados"]
+struct:f59 -> a59Node0 -> a59Node1 -> a59Node2 -> a59Node3;
+a60Node0 [label="Ibarra y Solano"]
+struct:f60 -> a60Node0;
+a61Node0 [label="Jaramillo y Mascareñas"]
+a61Node1 [label="Juárez y Hurtado"]
+a61Node2 [label="Juárez Rosado e Hijos"]
+a61Node3 [label="Jasso, Vega y Tamez Asociados"]
+a61Node4 [label="Jáquez Velázquez S.A."]
+struct:f61 -> a61Node0 -> a61Node1 -> a61Node2 -> a61Node3 -> a61Node4;
+a64Node0 [label="Maldonado y Barela"]
+a64Node1 [label="Montemayor y Roldán"]
+a64Node2 [label="Montalvo S.L."]
+a64Node3 [label="Mojica, Muñiz y Zúñiga Asociados"]
+a64Node4 [label="Madrid y Mojica"]
+struct:f64 -> a64Node0 -> a64Node1 -> a64Node2 -> a64Node3 -> a64Node4;
+a65Node0 [label="Alcala Beltrán S.A."]
+struct:f65 -> a65Node0;
+a66Node0 [label="Benavídez y Holguín"]
+a66Node1 [label="Barragán y Adorno"]
+a66Node2 [label="Bustos S.L."]
+a66Node3 [label="Badillo e Hijos"]
+a66Node4 [label="Briones Ocampo S.A."]
+struct:f66 -> a66Node0 -> a66Node1 -> a66Node2 -> a66Node3 -> a66Node4;
+a67Node0 [label="Cotto Delapaz Hermanos"]
+a67Node1 [label="Colón y Moreno"]
+a67Node2 [label="Camacho Verdugo S.A."]
+a67Node3 [label="Carrasco y Villareal"]
+a67Node4 [label="Castro y Hernández"]
+a67Node5 [label="Curiel S.A."]
+a67Node6 [label="Cornejo y Paredes"]
+a67Node7 [label="Cuellar Hermanos"]
+a67Node8 [label="Córdova y Henríquez"]
+a67Node9 [label="Calderón y Escalante"]
+a67Node10 [label="Chacón, Muñiz y Sevilla Asociados"]
+struct:f67 -> a67Node0 -> a67Node1 -> a67Node2 -> a67Node3 -> a67Node4 -> a67Node5 -> a67Node6 -> a67Node7 -> a67Node8 -> a67Node9 -> a67Node10;
+a68Node0 [label="Domínquez Pagan Hermanos"]
+a68Node1 [label="Duran, Gómez y Ulibarri Asociados"]
+struct:f68 -> a68Node0 -> a68Node1;
+a69Node0 [label="Espinosa y Sotelo"]
+a69Node1 [label="Espinoza y Zambrano"]
+a69Node2 [label="Espino y Tejada"]
+a69Node3 [label="Elizondo y Guardado"]
+struct:f69 -> a69Node0 -> a69Node1 -> a69Node2 -> a69Node3;
+a70Node0 [label="Flórez, Sauceda y Quiñónez Asociados"]
+a70Node1 [label="Fajardo y Delapaz"]
+a70Node2 [label="Farías Castro S.A."]
+struct:f70 -> a70Node0 -> a70Node1 -> a70Node2;
+a71Node0 [label="Guardado Esparza S.L."]
+a71Node1 [label="Gaona Mares S.L."]
+a71Node2 [label="Guajardo, Rivera y Montero Asociados"]
+a71Node3 [label="Gálvez Osorio Hermanos"]
+a71Node4 [label="Gurule, Ledesma y Botello Asociados"]
+a71Node5 [label="Gil Orosco S.L."]
+struct:f71 -> a71Node0 -> a71Node1 -> a71Node2 -> a71Node3 -> a71Node4 -> a71Node5;
+a72Node0 [label="Holguín y Baca"]
+a72Node1 [label="Herrera, Sanabria y Toledo Asociados"]
+a72Node2 [label="Hidalgo, Mata y Manzanares Asociados"]
+a72Node3 [label="Hurtado Archuleta S.L."]
+a72Node4 [label="Herrera Vera S.A."]
+struct:f72 -> a72Node0 -> a72Node1 -> a72Node2 -> a72Node3 -> a72Node4;
+a73Node0 [label="Irizarry, Preciado y Soliz Asociados"]
+a73Node1 [label="Ibarra e Hijos"]
+a73Node2 [label="Iglesias Delacrúz e Hijos"]
+struct:f73 -> a73Node0 -> a73Node1 -> a73Node2;
+a74Node0 [label="Jaramillo y Mascareñas"]
+a74Node1 [label="Jaimes Bahena e Hijos"]
+a74Node2 [label="Jiménez y Nazario"]
+a74Node3 [label="Jaime, Carmona y Córdova Asociados"]
+a74Node4 [label="Jiménez, Alva y Zamudio Asociados"]
+struct:f74 -> a74Node0 -> a74Node1 -> a74Node2 -> a74Node3 -> a74Node4;
+a76Node0 [label="Lira Corrales Hermanos"]
+a76Node1 [label="Leyva Tafoya e Hijos"]
+a76Node2 [label="Limón Valles S.A."]
+a76Node3 [label="Laboy y Espinoza"]
+a76Node4 [label="Leiva y Carvajal"]
+struct:f76 -> a76Node0 -> a76Node1 -> a76Node2 -> a76Node3 -> a76Node4;
+a77Node0 [label="Montemayor y Roldán"]
+a77Node1 [label="Martínez Rojas S.L."]
+a77Node2 [label="Menéndez Valencia Hermanos"]
+a77Node3 [label="Monroy, Esquivel y Brito Asociados"]
+a77Node4 [label="Matías Hermanos"]
+a77Node5 [label="Montes Arevalo e Hijos"]
+struct:f77 -> a77Node0 -> a77Node1 -> a77Node2 -> a77Node3 -> a77Node4 -> a77Node5;
+a78Node0 [label="Almanza Cavazos Hermanos"]
+a78Node1 [label="Alonso y Juárez"]
+struct:f78 -> a78Node0 -> a78Node1;
+a79Node0 [label="Badillo e Hijos"]
+a79Node1 [label="Borrego López S.L."]
+a79Node2 [label="Blanco Guardado S.A."]
+struct:f79 -> a79Node0 -> a79Node1 -> a79Node2;
+a80Node0 [label="Corrales Mojica S.A."]
+a80Node1 [label="Cotto Delapaz Hermanos"]
+struct:f80 -> a80Node0 -> a80Node1;
+a81Node0 [label="Delapaz y Puga"]
+a81Node1 [label="Delapaz y Lira"]
+a81Node2 [label="Delacrúz, Grijalva y Valenzuela Asociados"]
+a81Node3 [label="Delgadillo y Alaniz"]
+a81Node4 [label="Delgadillo Cardenas S.A."]
+a81Node5 [label="Deleón y Beltrán"]
+struct:f81 -> a81Node0 -> a81Node1 -> a81Node2 -> a81Node3 -> a81Node4 -> a81Node5;
+a82Node0 [label="Espino y Tejada"]
+struct:f82 -> a82Node0;
+a83Node0 [label="Figueroa Serna S.L."]
+a83Node1 [label="Figueroa S.L."]
+a83Node2 [label="Fajardo, Saldivar y Salas Asociados"]
+struct:f83 -> a83Node0 -> a83Node1 -> a83Node2;
+a84Node0 [label="Galindo, Valentín y Quintero Asociados"]
+a84Node1 [label="Garza Toro e Hijos"]
+a84Node2 [label="Guerrero y Serna"]
+struct:f84 -> a84Node0 -> a84Node1 -> a84Node2;
+a85Node0 [label="Herrera, Sanabria y Toledo Asociados"]
+a85Node1 [label="Heredia y Angulo"]
+a85Node2 [label="Herrera S.A."]
+a85Node3 [label="Huerta e Hijos"]
+a85Node4 [label="Hidalgo, Mata y Manzanares Asociados"]
+a85Node5 [label="Hinojosa Llamas e Hijos"]
+struct:f85 -> a85Node0 -> a85Node1 -> a85Node2 -> a85Node3 -> a85Node4 -> a85Node5;
+a86Node0 [label="Iglesias, Altamirano y Amador Asociados"]
+struct:f86 -> a86Node0;
+a87Node0 [label="Jaramillo y Mascareñas"]
+a87Node1 [label="Juárez y Hurtado"]
+a87Node2 [label="Jaime, Carmona y Córdova Asociados"]
+a87Node3 [label="Jáquez Apodaca e Hijos"]
+a87Node4 [label="Jaimes Espinosa e Hijos"]
+struct:f87 -> a87Node0 -> a87Node1 -> a87Node2 -> a87Node3 -> a87Node4;
+a89Node0 [label="Leyva Tafoya e Hijos"]
+a89Node1 [label="Limón Valles S.A."]
+a89Node2 [label="Laboy y Espinoza"]
+struct:f89 -> a89Node0 -> a89Node1 -> a89Node2;
+a90Node0 [label="Montalvo S.L."]
+a90Node1 [label="Monroy, Esquivel y Brito Asociados"]
+a90Node2 [label="Matías Hermanos"]
+a90Node3 [label="Mojica, Muñiz y Zúñiga Asociados"]
+a90Node4 [label="Maestas y Macías"]
+struct:f90 -> a90Node0 -> a90Node1 -> a90Node2 -> a90Node3 -> a90Node4;
+a91Node0 [label="Anguiano, Longoria y Blanco Asociados"]
+a91Node1 [label="Arroyo Almanza S.A."]
+a91Node2 [label="Acosta, Almaraz y Ramírez Asociados"]
+struct:f91 -> a91Node0 -> a91Node1 -> a91Node2;
+a92Node0 [label="Barrientos y Rivera"]
+a92Node1 [label="Briones Ocampo S.A."]
+a92Node2 [label="Baca, Muñiz y Alcántar Asociados"]
+struct:f92 -> a92Node0 -> a92Node1 -> a92Node2;
+a93Node0 [label="Cadena, Colón y Olivo Asociados"]
+a93Node1 [label="Corrales, Noriega y Montenegro Asociados"]
+struct:f93 -> a93Node0 -> a93Node1;
+a94Node0 [label="Domínquez Pagan Hermanos"]
+a94Node1 [label="Delapaz y Puga"]
+a94Node2 [label="de Anda Becerra S.L."]
+a94Node3 [label="Domínquez, Alarcón y Barela Asociados"]
+a94Node4 [label="Delapaz Arevalo Hermanos"]
+a94Node5 [label="Duran Esquivel e Hijos"]
+a94Node6 [label="Dávila, Acevedo y Parra Asociados"]
+a94Node7 [label="Delafuente, Delao y Navarro Asociados"]
+a94Node8 [label="Delacrúz S.A."]
+a94Node9 [label="Delapaz Peralta Hermanos"]
+struct:f94 -> a94Node0 -> a94Node1 -> a94Node2 -> a94Node3 -> a94Node4 -> a94Node5 -> a94Node6 -> a94Node7 -> a94Node8 -> a94Node9;
+a95Node0 [label="Esparza y Monroy"]
+a95Node1 [label="Esquibel y Lemus"]
+a95Node2 [label="Escamilla Pichardo S.L."]
+a95Node3 [label="Espinosa y Delao"]
+struct:f95 -> a95Node0 -> a95Node1 -> a95Node2 -> a95Node3;
+a96Node0 [label="Flores, Prado y Adorno Asociados"]
+a96Node1 [label="Figueroa, Márquez y Carrero Asociados"]
+a96Node2 [label="Fajardo, Saldivar y Salas Asociados"]
+a96Node3 [label="Ferrer y Delarosa"]
+a96Node4 [label="Fuentes y Parra"]
+struct:f96 -> a96Node0 -> a96Node1 -> a96Node2 -> a96Node3 -> a96Node4;
+a97Node0 [label="Guardado Esparza S.L."]
+a97Node1 [label="Gurule y Sepúlveda"]
+struct:f97 -> a97Node0 -> a97Node1;
+a98Node0 [label="Haro y Rodrígez"]
+a98Node1 [label="Huerta e Hijos"]
+a98Node2 [label="Herrera Reynoso Hermanos"]
+struct:f98 -> a98Node0 -> a98Node1 -> a98Node2;
+a99Node0 [label="Ibarra y Jaimes"]
+a99Node1 [label="Irizarry, Barreto y Arriaga Asociados"]
+a99Node2 [label="Irizarry Aguirre e Hijos"]
+a99Node3 [label="Ibarra, Altamirano y Aguayo Asociados"]
+a99Node4 [label="Irizarry Hernandes S.L."]
+a99Node5 [label="Irizarry y Almaraz"]
+struct:f99 -> a99Node0 -> a99Node1 -> a99Node2 -> a99Node3 -> a99Node4 -> a99Node5;
+a100Node0 [label="Jaime, Cavazos y Galván Asociados"]
+a100Node1 [label="Jaramillo y Salinas"]
+a100Node2 [label="Juárez Rosado e Hijos"]
+a100Node3 [label="Jiménez y Nazario"]
+a100Node4 [label="Jurado Solano S.A."]
+a100Node5 [label="Jiménez, Alva y Zamudio Asociados"]
+struct:f100 -> a100Node0 -> a100Node1 -> a100Node2 -> a100Node3 -> a100Node4 -> a100Node5;
+a102Node0 [label="Leyva Tafoya e Hijos"]
+a102Node1 [label="Limón Valles S.A."]
+a102Node2 [label="Laboy y Espinoza"]
+a102Node3 [label="Luna, Acevedo y Castro Asociados"]
+a102Node4 [label="Leiva, Fonseca y Polanco Asociados"]
+a102Node5 [label="Lira Olivo e Hijos"]
+a102Node6 [label="Leyva Alonso e Hijos"]
+struct:f102 -> a102Node0 -> a102Node1 -> a102Node2 -> a102Node3 -> a102Node4 -> a102Node5 -> a102Node6;
+a104Node0 [label="Alcala Beltrán S.A."]
+a104Node1 [label="Arevalo, Lozano y Águilar Asociados"]
+a104Node2 [label="Arriaga S.A."]
+a104Node3 [label="Ayala y Alvarado"]
+struct:f104 -> a104Node0 -> a104Node1 -> a104Node2 -> a104Node3;
+a106Node0 [label="Corrales, Noriega y Montenegro Asociados"]
+a106Node1 [label="Cintrón Carrero S.L."]
+a106Node2 [label="Cabrera Barrios e Hijos"]
+struct:f106 -> a106Node0 -> a106Node1 -> a106Node2;
+a107Node0 [label="Delapaz y Puga"]
+a107Node1 [label="Delapaz y Lira"]
+a107Node2 [label="Dueñas, Esquivel y Morales Asociados"]
+a107Node3 [label="Domínquez, Alarcón y Barela Asociados"]
+struct:f107 -> a107Node0 -> a107Node1 -> a107Node2 -> a107Node3;
+a108Node0 [label="Espinoza y Alvarez"]
+a108Node1 [label="Espinosa y Sotelo"]
+struct:f108 -> a108Node0 -> a108Node1;
+a109Node0 [label="Figueroa Serna S.L."]
+struct:f109 -> a109Node0;
+a110Node0 [label="Guardado Esparza S.L."]
+a110Node1 [label="Gurule y Sepúlveda"]
+a110Node2 [label="Guerrero y Serna"]
+a110Node3 [label="Gaytán, Trejo y Esquibel Asociados"]
+a110Node4 [label="Gastélum Báez e Hijos"]
+struct:f110 -> a110Node0 -> a110Node1 -> a110Node2 -> a110Node3 -> a110Node4;
+a111Node0 [label="Holguín y Baca"]
+a111Node1 [label="Hurtado y Terán"]
+a111Node2 [label="Haro y Espinal"]
+struct:f111 -> a111Node0 -> a111Node1 -> a111Node2;
+a112Node0 [label="Ibarra y Jaimes"]
+struct:f112 -> a112Node0;
+a113Node0 [label="Jáquez Lucero S.A."]
+a113Node1 [label="Jasso, Vega y Tamez Asociados"]
+struct:f113 -> a113Node0 -> a113Node1;
+a116Node0 [label="Murillo Domínguez S.L."]
+a116Node1 [label="Madrigal e Hijos"]
+struct:f116 -> a116Node0 -> a116Node1;
+a117Node0 [label="Alcala Beltrán S.A."]
+a117Node1 [label="Anguiano, Longoria y Blanco Asociados"]
+a117Node2 [label="Atencio Carrasco S.L."]
+a117Node3 [label="Altamirano Corona S.L."]
+struct:f117 -> a117Node0 -> a117Node1 -> a117Node2 -> a117Node3;
+a118Node0 [label="Bétancourt Palacios Hermanos"]
+struct:f118 -> a118Node0;
+a119Node0 [label="Camacho Verdugo S.A."]
+struct:f119 -> a119Node0;
+a120Node0 [label="Duran Varela e Hijos"]
+a120Node1 [label="Delapaz y Lira"]
+a120Node2 [label="Duran y Paredes"]
+a120Node3 [label="Duran Esquivel e Hijos"]
+a120Node4 [label="Dávila, Acevedo y Parra Asociados"]
+struct:f120 -> a120Node0 -> a120Node1 -> a120Node2 -> a120Node3 -> a120Node4;
+a121Node0 [label="Echevarría, Menéndez y Yáñez Asociados"]
+a121Node1 [label="Escamilla Pichardo S.L."]
+struct:f121 -> a121Node0 -> a121Node1;
+a122Node0 [label="Fuentes y Yáñez"]
+struct:f122 -> a122Node0;
+a123Node0 [label="Galindo, Valentín y Quintero Asociados"]
+a123Node1 [label="Godoy Acuña S.A."]
+a123Node2 [label="Gollum Galván S.A."]
+a123Node3 [label="Granado e Hijos"]
+a123Node4 [label="Guevara Solorio Hermanos"]
+struct:f123 -> a123Node0 -> a123Node1 -> a123Node2 -> a123Node3 -> a123Node4;
+a124Node0 [label="Holguín y Baca"]
+a124Node1 [label="Holguín y Gallegos"]
+a124Node2 [label="Haro y Rodrígez"]
+struct:f124 -> a124Node0 -> a124Node1 -> a124Node2;
+a125Node0 [label="Iglesias y Téllez"]
+a125Node1 [label="Irizarry, Preciado y Soliz Asociados"]
+a125Node2 [label="Irizarry, Barreto y Arriaga Asociados"]
+a125Node3 [label="Iglesias, Altamirano y Amador Asociados"]
+struct:f125 -> a125Node0 -> a125Node1 -> a125Node2 -> a125Node3;
+a126Node0 [label="Jaime, Carmona y Córdova Asociados"]
+struct:f126 -> a126Node0;
+a128Node0 [label="Laboy y Espinoza"]
+struct:f128 -> a128Node0;
+a129Node0 [label="Montaño, Ferrer y Varela Asociados"]
+struct:f129 -> a129Node0;
+a131Node0 [label="Barrientos y Rivera"]
+a131Node1 [label="Bonilla S.L."]
+a131Node2 [label="Badillo y Montez"]
+struct:f131 -> a131Node0 -> a131Node1 -> a131Node2;
+a132Node0 [label="Cintrón Carrero S.L."]
+a132Node1 [label="Chávez y Nava"]
+a132Node2 [label="Cornejo, López y Orta Asociados"]
+a132Node3 [label="Ceballos e Hijos"]
+struct:f132 -> a132Node0 -> a132Node1 -> a132Node2 -> a132Node3;
+a133Node0 [label="Duran Varela e Hijos"]
+struct:f133 -> a133Node0;
+a134Node0 [label="Estrada, Dávila y Partida Asociados"]
+a134Node1 [label="Espino Castro S.A."]
+a134Node2 [label="Echevarría, Varela y Rivera Asociados"]
+a134Node3 [label="Escalante, Girón y Blanco Asociados"]
+a134Node4 [label="Escobar, Bétancourt y Gómez Asociados"]
+struct:f134 -> a134Node0 -> a134Node1 -> a134Node2 -> a134Node3 -> a134Node4;
+a135Node0 [label="Fajardo, Santacruz y Sepúlveda Asociados"]
+struct:f135 -> a135Node0;
+a136Node0 [label="Godoy Acuña S.A."]
+a136Node1 [label="Guillen S.A."]
+a136Node2 [label="Gollum Galván S.A."]
+a136Node3 [label="Gurule y Sepúlveda"]
+a136Node4 [label="Gaytán, Trejo y Esquibel Asociados"]
+a136Node5 [label="Gastélum Báez e Hijos"]
+a136Node6 [label="Galindo, Correa y Ruelas Asociados"]
+a136Node7 [label="Gracia y Cardenas"]
+a136Node8 [label="Guajardo e Hijos"]
+struct:f136 -> a136Node0 -> a136Node1 -> a136Node2 -> a136Node3 -> a136Node4 -> a136Node5 -> a136Node6 -> a136Node7 -> a136Node8;
+a137Node0 [label="Haro y Villegas"]
+a137Node1 [label="Hinojosa Llamas e Hijos"]
+a137Node2 [label="Hurtado y Orellana"]
+struct:f137 -> a137Node0 -> a137Node1 -> a137Node2;
+a138Node0 [label="Ibarra, Fernández y León Asociados"]
+a138Node1 [label="Ibarra y Jaimes"]
+a138Node2 [label="Ibarra, Cazares y Amador Asociados"]
+a138Node3 [label="Ibarra, Gamboa y Cerda Asociados"]
+a138Node4 [label="Irizarry Aguirre e Hijos"]
+struct:f138 -> a138Node0 -> a138Node1 -> a138Node2 -> a138Node3 -> a138Node4;
+a139Node0 [label="Juárez S.A."]
+a139Node1 [label="Jimínez y Delagarza"]
+struct:f139 -> a139Node0 -> a139Node1;
+a142Node0 [label="Maldonado y Barela"]
+a142Node1 [label="Montaño, Ferrer y Varela Asociados"]
+a142Node2 [label="Madrid y Mojica"]
+a142Node3 [label="Maestas y Macías"]
+a142Node4 [label="Mata, Cruz y González Asociados"]
+a142Node5 [label="Montañez y Escamilla"]
+a142Node6 [label="Montero y Nieto"]
+struct:f142 -> a142Node0 -> a142Node1 -> a142Node2 -> a142Node3 -> a142Node4 -> a142Node5 -> a142Node6;
+a143Node0 [label="Alcala Beltrán S.A."]
+a143Node1 [label="Apodaca y Almonte"]
+struct:f143 -> a143Node0 -> a143Node1;
+a144Node0 [label="Banda S.L."]
+a144Node1 [label="Barragán, Velásquez y Perea Asociados"]
+struct:f144 -> a144Node0 -> a144Node1;
+a145Node0 [label="Colón y Moreno"]
+a145Node1 [label="Corrales, Noriega y Montenegro Asociados"]
+a145Node2 [label="Crespo Alonzo e Hijos"]
+a145Node3 [label="Carrasquillo y Casanova"]
+struct:f145 -> a145Node0 -> a145Node1 -> a145Node2 -> a145Node3;
+a146Node0 [label="Duran, Gómez y Ulibarri Asociados"]
+a146Node1 [label="Delafuente, Delao y Navarro Asociados"]
+a146Node2 [label="Dávila Terán S.A."]
+struct:f146 -> a146Node0 -> a146Node1 -> a146Node2;
+a147Node0 [label="Espinosa Paredes e Hijos"]
+a147Node1 [label="Espinoza y Alvarez"]
+a147Node2 [label="Escamilla Pichardo S.L."]
+struct:f147 -> a147Node0 -> a147Node1 -> a147Node2;
+a148Node0 [label="Fajardo, Santacruz y Sepúlveda Asociados"]
+a148Node1 [label="Fonseca Vélez e Hijos"]
+a148Node2 [label="Flórez Zamora S.A."]
+a148Node3 [label="Ferrer y Delarosa"]
+struct:f148 -> a148Node0 -> a148Node1 -> a148Node2 -> a148Node3;
+a149Node0 [label="Guillen S.A."]
+a149Node1 [label="Gaona Mares S.L."]
+a149Node2 [label="Granado e Hijos"]
+a149Node3 [label="Gaytán, Trejo y Esquibel Asociados"]
+struct:f149 -> a149Node0 -> a149Node1 -> a149Node2 -> a149Node3;
+a150Node0 [label="Haro y Rodrígez"]
+struct:f150 -> a150Node0;
+a151Node0 [label="Irizarry, Preciado y Soliz Asociados"]
+struct:f151 -> a151Node0;
+a152Node0 [label="Jáquez Lucero S.A."]
+a152Node1 [label="Juárez Rosado e Hijos"]
+a152Node2 [label="Jurado S.A."]
+a152Node3 [label="Juárez S.A."]
+a152Node4 [label="Juárez Ferrer S.A."]
+a152Node5 [label="Jiménez y Montemayor"]
+a152Node6 [label="Jimínez y Delagarza"]
+a152Node7 [label="Jurado Solano S.A."]
+a152Node8 [label="Jaimes, Olivares y Carrera Asociados"]
+a152Node9 [label="Jaimes Pagan S.A."]
+struct:f152 -> a152Node0 -> a152Node1 -> a152Node2 -> a152Node3 -> a152Node4 -> a152Node5 -> a152Node6 -> a152Node7 -> a152Node8 -> a152Node9;
+a154Node0 [label="Lira Corrales Hermanos"]
+struct:f154 -> a154Node0;
+a155Node0 [label="Maldonado y Barela"]
+a155Node1 [label="Mondragón y Rentería"]
+a155Node2 [label="Madrigal e Hijos"]
+a155Node3 [label="Madrid y Mojica"]
+struct:f155 -> a155Node0 -> a155Node1 -> a155Node2 -> a155Node3;
+a156Node0 [label="Alcala Beltrán S.A."]
+a156Node1 [label="Ayala y Esquivel"]
+a156Node2 [label="Apodaca y Almonte"]
+a156Node3 [label="Archuleta y Laboy"]
+struct:f156 -> a156Node0 -> a156Node1 -> a156Node2 -> a156Node3;
+a157Node0 [label="Barragán y Adorno"]
+a157Node1 [label="Bonilla S.L."]
+struct:f157 -> a157Node0 -> a157Node1;
+a158Node0 [label="Colón y Moreno"]
+struct:f158 -> a158Node0;
+a159Node0 [label="Dueñas, Esquivel y Morales Asociados"]
+a159Node1 [label="Delacrúz, Grijalva y Valenzuela Asociados"]
+a159Node2 [label="Delgadillo y Alaniz"]
+a159Node3 [label="Dávila Terán S.A."]
+struct:f159 -> a159Node0 -> a159Node1 -> a159Node2 -> a159Node3;
+a160Node0 [label="Estrada, Dávila y Partida Asociados"]
+a160Node1 [label="Espinoza, Ceja y Villa Asociados"]
+a160Node2 [label="Escalante, Girón y Blanco Asociados"]
+struct:f160 -> a160Node0 -> a160Node1 -> a160Node2;
+a161Node0 [label="Fuentes y Yáñez"]
+a161Node1 [label="Fonseca Vélez e Hijos"]
+struct:f161 -> a161Node0 -> a161Node1;
+a162Node0 [label="Galindo, Valentín y Quintero Asociados"]
+a162Node1 [label="Guillen S.A."]
+a162Node2 [label="Grijalva, Ceballos y Rincón Asociados"]
+a162Node3 [label="Gaona Mares S.L."]
+a162Node4 [label="Gaytán, Trejo y Esquibel Asociados"]
+struct:f162 -> a162Node0 -> a162Node1 -> a162Node2 -> a162Node3 -> a162Node4;
+a163Node0 [label="Holguín y Gallegos"]
+a163Node1 [label="Heredia y Angulo"]
+struct:f163 -> a163Node0 -> a163Node1;
+a164Node0 [label="Ibarra, Fernández y León Asociados"]
+a164Node1 [label="Ibarra, Gamboa y Cerda Asociados"]
+a164Node2 [label="Ibarra y Páez"]
+a164Node3 [label="Ibarra e Hijos"]
+struct:f164 -> a164Node0 -> a164Node1 -> a164Node2 -> a164Node3;
+a165Node0 [label="Jáquez Lucero S.A."]
+a165Node1 [label="Jurado y Matos"]
+a165Node2 [label="Juárez S.A."]
+a165Node3 [label="Juárez Ferrer S.A."]
+a165Node4 [label="Jáquez Apodaca e Hijos"]
+struct:f165 -> a165Node0 -> a165Node1 -> a165Node2 -> a165Node3 -> a165Node4;
+a167Node0 [label="Lerma S.L."]
+a167Node1 [label="Luevano, Mojica y Ocasio Asociados"]
+a167Node2 [label="Ledesma, Ibarra y Chapa Asociados"]
+struct:f167 -> a167Node0 -> a167Node1 -> a167Node2;
+a168Node0 [label="Montalvo S.L."]
+struct:f168 -> a168Node0;
+a169Node0 [label="Apodaca y Almonte"]
+a169Node1 [label="Arroyo Almanza S.A."]
+a169Node2 [label="Archuleta y Laboy"]
+a169Node3 [label="Alba y Puga"]
+a169Node4 [label="Alvarado Girón S.L."]
+struct:f169 -> a169Node0 -> a169Node1 -> a169Node2 -> a169Node3 -> a169Node4;
+a170Node0 [label="Baca, Soria y Alvarez Asociados"]
+a170Node1 [label="Benavídez y Holguín"]
+a170Node2 [label="Barrientos y Rivera"]
+struct:f170 -> a170Node0 -> a170Node1 -> a170Node2;
+a171Node0 [label="Castro y Hernández"]
+struct:f171 -> a171Node0;
+a172Node0 [label="Domínquez Pagan Hermanos"]
+a172Node1 [label="de Anda Becerra S.L."]
+struct:f172 -> a172Node0 -> a172Node1;
+a173Node0 [label="Espinosa Paredes e Hijos"]
+a173Node1 [label="Esquivel y Rojas"]
+a173Node2 [label="Estrada, Dávila y Partida Asociados"]
+struct:f173 -> a173Node0 -> a173Node1 -> a173Node2;
+a174Node0 [label="Fajardo y Delapaz"]
+struct:f174 -> a174Node0;
+a175Node0 [label="Granado e Hijos"]
+a175Node1 [label="Gracia y Cardenas"]
+a175Node2 [label="Gaytán Salgado S.A."]
+a175Node3 [label="Guajardo e Hijos"]
+a175Node4 [label="Gurule, Ledesma y Botello Asociados"]
+struct:f175 -> a175Node0 -> a175Node1 -> a175Node2 -> a175Node3 -> a175Node4;
+a176Node0 [label="Herrera Reynoso Hermanos"]
+a176Node1 [label="Hinojosa y Solorzano"]
+a176Node2 [label="Holguín Saiz e Hijos"]
+a176Node3 [label="Hurtado y Orellana"]
+a176Node4 [label="Haro S.L."]
+struct:f176 -> a176Node0 -> a176Node1 -> a176Node2 -> a176Node3 -> a176Node4;
+a177Node0 [label="Irizarry y Treviño"]
+a177Node1 [label="Iglesias y Téllez"]
+struct:f177 -> a177Node0 -> a177Node1;
+a178Node0 [label="Juárez Rosado e Hijos"]
+struct:f178 -> a178Node0;
+a181Node0 [label="Maldonado y Barela"]
+a181Node1 [label="Montemayor y Roldán"]
+struct:f181 -> a181Node0 -> a181Node1;
+a182Node0 [label="Arteaga e Hijos"]
+struct:f182 -> a182Node0;
+a183Node0 [label="Benavídez y Holguín"]
+a183Node1 [label="Bustos y León"]
+a183Node2 [label="Bustos S.L."]
+struct:f183 -> a183Node0 -> a183Node1 -> a183Node2;
+a184Node0 [label="Corrales Mojica S.A."]
+a184Node1 [label="Cotto Delapaz Hermanos"]
+a184Node2 [label="Carrasquillo y Casanova"]
+a184Node3 [label="Cornejo, López y Orta Asociados"]
+a184Node4 [label="Carrasco y Villareal"]
+struct:f184 -> a184Node0 -> a184Node1 -> a184Node2 -> a184Node3 -> a184Node4;
+a185Node0 [label="Domínquez Pagan Hermanos"]
+a185Node1 [label="Delatorre Venegas Hermanos"]
+a185Node2 [label="Delacrúz, Grijalva y Valenzuela Asociados"]
+a185Node3 [label="de Anda Becerra S.L."]
+a185Node4 [label="Delafuente, Delao y Navarro Asociados"]
+struct:f185 -> a185Node0 -> a185Node1 -> a185Node2 -> a185Node3 -> a185Node4;
+a186Node0 [label="Espino Ojeda Hermanos"]
+a186Node1 [label="Echevarría, Varela y Rivera Asociados"]
+struct:f186 -> a186Node0 -> a186Node1;
+a187Node0 [label="Fajardo y Delapaz"]
+struct:f187 -> a187Node0;
+a188Node0 [label="Guardado Esparza S.L."]
+a188Node1 [label="Garza Toro e Hijos"]
+a188Node2 [label="Grijalva, Ceballos y Rincón Asociados"]
+a188Node3 [label="Gurule y Sepúlveda"]
+a188Node4 [label="Galindo, Correa y Ruelas Asociados"]
+struct:f188 -> a188Node0 -> a188Node1 -> a188Node2 -> a188Node3 -> a188Node4;
+a189Node0 [label="Haro y Villegas"]
+a189Node1 [label="Hidalgo, Mata y Manzanares Asociados"]
+a189Node2 [label="Holguín Saiz e Hijos"]
+a189Node3 [label="Hinojosa Santana e Hijos"]
+a189Node4 [label="Haro y Espinal"]
+struct:f189 -> a189Node0 -> a189Node1 -> a189Node2 -> a189Node3 -> a189Node4;
+a191Node0 [label="Jáquez Lucero S.A."]
+a191Node1 [label="Jasso, Atencio y Navarrete Asociados"]
+struct:f191 -> a191Node0 -> a191Node1;
+a193Node0 [label="Laureano Madera S.L."]
+a193Node1 [label="Limón Valles S.A."]
+struct:f193 -> a193Node0 -> a193Node1;
+a194Node0 [label="Martínez Rojas S.L."]
+a194Node1 [label="Menéndez Valencia Hermanos"]
+struct:f194 -> a194Node0 -> a194Node1;
+a195Node0 [label="Almanza Cavazos Hermanos"]
+a195Node1 [label="Alonso y Juárez"]
+struct:f195 -> a195Node0 -> a195Node1;
+a196Node0 [label="Bustos y León"]
+struct:f196 -> a196Node0;
+a197Node0 [label="Contreras Villaseñor S.L."]
+a197Node1 [label="Cruz Pedroza e Hijos"]
+a197Node2 [label="Carrillo Amaya Hermanos"]
+a197Node3 [label="Corona y Vallejo"]
+struct:f197 -> a197Node0 -> a197Node1 -> a197Node2 -> a197Node3;
+a198Node0 [label="Delapaz y Puga"]
+a198Node1 [label="Delapaz y Lira"]
+a198Node2 [label="Delagarza y Marrero"]
+struct:f198 -> a198Node0 -> a198Node1 -> a198Node2;
+a199Node0 [label="Espinosa Paredes e Hijos"]
+a199Node1 [label="Espino Ojeda Hermanos"]
+a199Node2 [label="Echevarría, Menéndez y Yáñez Asociados"]
+a199Node3 [label="Espinoza y Alvarez"]
+a199Node4 [label="Escalante y Robledo"]
+struct:f199 -> a199Node0 -> a199Node1 -> a199Node2 -> a199Node3 -> a199Node4;
+a200Node0 [label="Flórez Alba S.A."]
+a200Node1 [label="Figueroa S.L."]
+a200Node2 [label="Fuentes y Yáñez"]
+struct:f200 -> a200Node0 -> a200Node1 -> a200Node2;
+a201Node0 [label="Grijalva, Ceballos y Rincón Asociados"]
+a201Node1 [label="Guevara Solorio Hermanos"]
+a201Node2 [label="Gallegos Quezada e Hijos"]
+a201Node3 [label="Guevara Hernandes S.A."]
+a201Node4 [label="Granado Guardado S.L."]
+struct:f201 -> a201Node0 -> a201Node1 -> a201Node2 -> a201Node3 -> a201Node4;
+a202Node0 [label="Holguín y Gallegos"]
+a202Node1 [label="Heredia y Angulo"]
+a202Node2 [label="Huerta e Hijos"]
+a202Node3 [label="Hurtado y Terán"]
+a202Node4 [label="Hinojosa Santana e Hijos"]
+struct:f202 -> a202Node0 -> a202Node1 -> a202Node2 -> a202Node3 -> a202Node4;
+a203Node0 [label="Ibarra y Solano"]
+a203Node1 [label="Irizarry Esparza e Hijos"]
+a203Node2 [label="Iglesias y Valentín"]
+a203Node3 [label="Irizarry Hernandes S.L."]
+a203Node4 [label="Iglesias y Sarabia"]
+struct:f203 -> a203Node0 -> a203Node1 -> a203Node2 -> a203Node3 -> a203Node4;
+a204Node0 [label="Juárez y Hurtado"]
+a204Node1 [label="Jaramillo y Salinas"]
+a204Node2 [label="Jurado S.A."]
+a204Node3 [label="Jurado y Matos"]
+a204Node4 [label="Juárez Ferrer S.A."]
+a204Node5 [label="Jurado Solano S.A."]
+struct:f204 -> a204Node0 -> a204Node1 -> a204Node2 -> a204Node3 -> a204Node4 -> a204Node5;
+a206Node0 [label="Lara y Cortés"]
+struct:f206 -> a206Node0;
+a207Node0 [label="Murillo Domínguez S.L."]
+a207Node1 [label="Mondragón y Rentería"]
+a207Node2 [label="Muñoz y Bermúdez"]
+a207Node3 [label="Manzanares, Trujillo y Escamilla Asociados"]
+a207Node4 [label="Mondragón e Hijos"]
+struct:f207 -> a207Node0 -> a207Node1 -> a207Node2 -> a207Node3 -> a207Node4;
+a209Node0 [label="Bétancourt Palacios Hermanos"]
+a209Node1 [label="Bustos e Hijos"]
+a209Node2 [label="Barrientos y Rivera"]
+a209Node3 [label="Bonilla S.L."]
+a209Node4 [label="Bustos S.L."]
+a209Node5 [label="Badillo y Montez"]
+a209Node6 [label="Báez y Anaya"]
+a209Node7 [label="Burgos S.A."]
+struct:f209 -> a209Node0 -> a209Node1 -> a209Node2 -> a209Node3 -> a209Node4 -> a209Node5 -> a209Node6 -> a209Node7;
+a210Node0 [label="Cintrón Carrero S.L."]
+a210Node1 [label="Chávez y Nava"]
+struct:f210 -> a210Node0 -> a210Node1;
+a211Node0 [label="Delatorre Venegas Hermanos"]
+a211Node1 [label="Duran y Paredes"]
+a211Node2 [label="Domínquez, Alarcón y Barela Asociados"]
+a211Node3 [label="Delapaz Arevalo Hermanos"]
+a211Node4 [label="Delgadillo y Haro"]
+struct:f211 -> a211Node0 -> a211Node1 -> a211Node2 -> a211Node3 -> a211Node4;
+a212Node0 [label="Espino Castro S.A."]
+a212Node1 [label="Esquibel y Lemus"]
+a212Node2 [label="Esquivel y Carreón"]
+struct:f212 -> a212Node0 -> a212Node1 -> a212Node2;
+a213Node0 [label="Flórez, Sauceda y Quiñónez Asociados"]
+a213Node1 [label="Flores, Prado y Adorno Asociados"]
+a213Node2 [label="Fuentes y Yáñez"]
+a213Node3 [label="Farías Castro S.A."]
+a213Node4 [label="Fierro, Zamudio y Casillas Asociados"]
+a213Node5 [label="Fernández y Cotto"]
+a213Node6 [label="Fierro y Alcala"]
+struct:f213 -> a213Node0 -> a213Node1 -> a213Node2 -> a213Node3 -> a213Node4 -> a213Node5 -> a213Node6;
+a214Node0 [label="Godoy Acuña S.A."]
+a214Node1 [label="Grijalva, Ceballos y Rincón Asociados"]
+a214Node2 [label="Gastélum Báez e Hijos"]
+a214Node3 [label="Guevara Solorio Hermanos"]
+a214Node4 [label="Gracia y Cardenas"]
+struct:f214 -> a214Node0 -> a214Node1 -> a214Node2 -> a214Node3 -> a214Node4;
+a215Node0 [label="Holguín y Baca"]
+struct:f215 -> a215Node0;
+a216Node0 [label="Irizarry, Barreto y Arriaga Asociados"]
+struct:f216 -> a216Node0;
+a217Node0 [label="Jaramillo y Salinas"]
+a217Node1 [label="Jáquez Velázquez S.A."]
+a217Node2 [label="Jaime Palomo e Hijos"]
+struct:f217 -> a217Node0 -> a217Node1 -> a217Node2;
+a219Node0 [label="Linares e Hijos"]
+a219Node1 [label="Laureano Madera S.L."]
+struct:f219 -> a219Node0 -> a219Node1;
+a221Node0 [label="Alonso y Juárez"]
+a221Node1 [label="Arenas Crespo S.A."]
+struct:f221 -> a221Node0 -> a221Node1;
+a222Node0 [label="Benavídez y Holguín"]
+a222Node1 [label="Bétancourt Palacios Hermanos"]
+a222Node2 [label="Bustos y León"]
+a222Node3 [label="Bañuelos y Peralta"]
+struct:f222 -> a222Node0 -> a222Node1 -> a222Node2 -> a222Node3;
+a224Node0 [label="Duran Varela e Hijos"]
+a224Node1 [label="Delatorre Venegas Hermanos"]
+a224Node2 [label="Delapaz y Lira"]
+a224Node3 [label="Domínguez, Aguilera y Urías Asociados"]
+struct:f224 -> a224Node0 -> a224Node1 -> a224Node2 -> a224Node3;
+a225Node0 [label="Esquivel y Rojas"]
+a225Node1 [label="Echevarría, Menéndez y Yáñez Asociados"]
+a225Node2 [label="Echevarría, Varela y Rivera Asociados"]
+a225Node3 [label="Esparza y Vera"]
+a225Node4 [label="Espinosa y Sotelo"]
+struct:f225 -> a225Node0 -> a225Node1 -> a225Node2 -> a225Node3 -> a225Node4;
+a226Node0 [label="Figueroa Serna S.L."]
+a226Node1 [label="Flórez Alba S.A."]
+a226Node2 [label="Figueroa, Nazario y Gaitán Asociados"]
+a226Node3 [label="Fonseca S.L."]
+a226Node4 [label="Flórez Zamora S.A."]
+a226Node5 [label="Farías, Galván y Tafoya Asociados"]
+struct:f226 -> a226Node0 -> a226Node1 -> a226Node2 -> a226Node3 -> a226Node4 -> a226Node5;
+a227Node0 [label="Gastélum Báez e Hijos"]
+struct:f227 -> a227Node0;
+a229Node0 [label="Irizarry, Preciado y Soliz Asociados"]
+a229Node1 [label="Iglesias, Altamirano y Amador Asociados"]
+a229Node2 [label="Ibarra Varela Hermanos"]
+a229Node3 [label="Ibarra, Cazares y Amador Asociados"]
+a229Node4 [label="Irizarry Esparza e Hijos"]
+a229Node5 [label="Irizarry, Chacón y Velasco Asociados"]
+a229Node6 [label="Irizarry Hermanos"]
+struct:f229 -> a229Node0 -> a229Node1 -> a229Node2 -> a229Node3 -> a229Node4 -> a229Node5 -> a229Node6;
+a230Node0 [label="Jaimes Bahena e Hijos"]
+a230Node1 [label="Jaime, Carmona y Córdova Asociados"]
+a230Node2 [label="Jimínez y Delagarza"]
+struct:f230 -> a230Node0 -> a230Node1 -> a230Node2;
+a232Node0 [label="Lira Corrales Hermanos"]
+a232Node1 [label="Luna e Hijos"]
+a232Node2 [label="Leiva y Carvajal"]
+a232Node3 [label="Loera y Aponte"]
+struct:f232 -> a232Node0 -> a232Node1 -> a232Node2 -> a232Node3;
+a233Node0 [label="Murillo Domínguez S.L."]
+a233Node1 [label="Maldonado y Barela"]
+a233Node2 [label="Montemayor y Roldán"]
+struct:f233 -> a233Node0 -> a233Node1 -> a233Node2;
+a234Node0 [label="Anguiano, Longoria y Blanco Asociados"]
+a234Node1 [label="Arenas Crespo S.A."]
+a234Node2 [label="Aponte Juárez S.A."]
+a234Node3 [label="Aparicio y Adorno"]
+a234Node4 [label="Armas y Romero"]
+struct:f234 -> a234Node0 -> a234Node1 -> a234Node2 -> a234Node3 -> a234Node4;
+a235Node0 [label="Bustos e Hijos"]
+struct:f235 -> a235Node0;
+a236Node0 [label="Corrales Mojica S.A."]
+a236Node1 [label="Cotto Delapaz Hermanos"]
+a236Node2 [label="Colón y Moreno"]
+a236Node3 [label="Carrasquillo y Casanova"]
+struct:f236 -> a236Node0 -> a236Node1 -> a236Node2 -> a236Node3;
+a237Node0 [label="Duran Varela e Hijos"]
+a237Node1 [label="Duran y Paredes"]
+struct:f237 -> a237Node0 -> a237Node1;
+a238Node0 [label="Esparza y Monroy"]
+a238Node1 [label="Espino Ojeda Hermanos"]
+a238Node2 [label="Esparza y Vera"]
+a238Node3 [label="Escamilla Pichardo S.L."]
+struct:f238 -> a238Node0 -> a238Node1 -> a238Node2 -> a238Node3;
+a239Node0 [label="Flórez Alba S.A."]
+a239Node1 [label="Flores, Prado y Adorno Asociados"]
+struct:f239 -> a239Node0 -> a239Node1;
+a240Node0 [label="Guillen S.A."]
+a240Node1 [label="Grijalva, Ceballos y Rincón Asociados"]
+a240Node2 [label="Gaona Mares S.L."]
+a240Node3 [label="Gollum y Carvajal"]
+a240Node4 [label="Gálvez Osorio Hermanos"]
+struct:f240 -> a240Node0 -> a240Node1 -> a240Node2 -> a240Node3 -> a240Node4;
+a241Node0 [label="Herrera S.A."]
+a241Node1 [label="Haro y Rodrígez"]
+a241Node2 [label="Hurtado Archuleta S.L."]
+a241Node3 [label="Hinojosa Santana e Hijos"]
+struct:f241 -> a241Node0 -> a241Node1 -> a241Node2 -> a241Node3;
+a242Node0 [label="Iglesias, Valdés y Echevarría Asociados"]
+struct:f242 -> a242Node0;
+a243Node0 [label="Jaime, Cavazos y Galván Asociados"]
+struct:f243 -> a243Node0;
+a245Node0 [label="Leiva y Miranda"]
+a245Node1 [label="Lara y Cortés"]
+a245Node2 [label="Laureano Madera S.L."]
+struct:f245 -> a245Node0 -> a245Node1 -> a245Node2;
+a247Node0 [label="Ayala y Esquivel"]
+struct:f247 -> a247Node0;
+a248Node0 [label="Baca, Soria y Alvarez Asociados"]
+a248Node1 [label="Barragán y Adorno"]
+a248Node2 [label="Barrientos y Rivera"]
+a248Node3 [label="Badillo e Hijos"]
+a248Node4 [label="Borrego López S.L."]
+struct:f248 -> a248Node0 -> a248Node1 -> a248Node2 -> a248Node3 -> a248Node4;
+a249Node0 [label="Cadena, Colón y Olivo Asociados"]
+a249Node1 [label="Corrales, Noriega y Montenegro Asociados"]
+a249Node2 [label="Cintrón Carrero S.L."]
+a249Node3 [label="Crespo Alonzo e Hijos"]
+a249Node4 [label="Chávez y Nava"]
+a249Node5 [label="Cortés, Menéndez y Rael Asociados"]
+struct:f249 -> a249Node0 -> a249Node1 -> a249Node2 -> a249Node3 -> a249Node4 -> a249Node5;
+a250Node0 [label="Delapaz y Puga"]
+a250Node1 [label="Duran, Gómez y Ulibarri Asociados"]
+a250Node2 [label="Domínguez, Aguilera y Urías Asociados"]
+struct:f250 -> a250Node0 -> a250Node1 -> a250Node2;
+a251Node0 [label="Esparza y Monroy"]
+a251Node1 [label="Espino Castro S.A."]
+a251Node2 [label="Espinoza y Alvarez"]
+struct:f251 -> a251Node0 -> a251Node1 -> a251Node2;
+a252Node0 [label="Flórez, Sauceda y Quiñónez Asociados"]
+a252Node1 [label="Fajardo, Santacruz y Sepúlveda Asociados"]
+a252Node2 [label="Flores, Prado y Adorno Asociados"]
+struct:f252 -> a252Node0 -> a252Node1 -> a252Node2;
+a253Node0 [label="Guillen S.A."]
+a253Node1 [label="Gaona Mares S.L."]
+a253Node2 [label="Gastélum Báez e Hijos"]
+struct:f253 -> a253Node0 -> a253Node1 -> a253Node2;
+a254Node0 [label="Herrera Reynoso Hermanos"]
+a254Node1 [label="Hurtado y Quiñones"]
+a254Node2 [label="Hurtado y Domínguez"]
+a254Node3 [label="Huerta y González"]
+a254Node4 [label="Hurtado y Jimínez"]
+struct:f254 -> a254Node0 -> a254Node1 -> a254Node2 -> a254Node3 -> a254Node4;
+a255Node0 [label="Ibarra, Fernández y León Asociados"]
+a255Node1 [label="Ibarra y Jaimes"]
+struct:f255 -> a255Node0 -> a255Node1;
+a258Node0 [label="Linares e Hijos"]
+a258Node1 [label="Leyva Tafoya e Hijos"]
+struct:f258 -> a258Node0 -> a258Node1;
+a259Node0 [label="Muñoz y Bermúdez"]
+a259Node1 [label="Monroy, Esquivel y Brito Asociados"]
+a259Node2 [label="Mayorga Rivera S.L."]
+struct:f259 -> a259Node0 -> a259Node1 -> a259Node2;
+a260Node0 [label="Ayala y Esquivel"]
+struct:f260 -> a260Node0;
+a261Node0 [label="Bétancourt Palacios Hermanos"]
+struct:f261 -> a261Node0;
+a262Node0 [label="Cadena, Colón y Olivo Asociados"]
+a262Node1 [label="Corrales, Noriega y Montenegro Asociados"]
+a262Node2 [label="Crespo Alonzo e Hijos"]
+a262Node3 [label="Carrasquillo y Casanova"]
+a262Node4 [label="Cabrera Barrios e Hijos"]
+a262Node5 [label="Cuellar Garza Hermanos"]
+a262Node6 [label="Cintrón y Pantoja"]
+struct:f262 -> a262Node0 -> a262Node1 -> a262Node2 -> a262Node3 -> a262Node4 -> a262Node5 -> a262Node6;
+a264Node0 [label="Esparza y Monroy"]
+a264Node1 [label="Esquivel y Rojas"]
+a264Node2 [label="Esquibel y Lemus"]
+a264Node3 [label="Esparza y Vera"]
+a264Node4 [label="Espinosa y Delao"]
+struct:f264 -> a264Node0 -> a264Node1 -> a264Node2 -> a264Node3 -> a264Node4;
+a265Node0 [label="Flores, Prado y Adorno Asociados"]
+struct:f265 -> a265Node0;
+a266Node0 [label="Granado e Hijos"]
+a266Node1 [label="Gollum y Carvajal"]
+a266Node2 [label="Gaytán Salgado S.A."]
+a266Node3 [label="Garica Nieves e Hijos"]
+a266Node4 [label="Gutiérrez S.A."]
+struct:f266 -> a266Node0 -> a266Node1 -> a266Node2 -> a266Node3 -> a266Node4;
+a267Node0 [label="Herrera S.A."]
+a267Node1 [label="Hurtado y Quiñones"]
+struct:f267 -> a267Node0 -> a267Node1;
+a268Node0 [label="Iglesias, Altamirano y Amador Asociados"]
+a268Node1 [label="Ibarra, Altamirano y Aguayo Asociados"]
+struct:f268 -> a268Node0 -> a268Node1;
+a269Node0 [label="Jáquez Lucero S.A."]
+a269Node1 [label="Jaime, Cavazos y Galván Asociados"]
+a269Node2 [label="Juárez Rosado e Hijos"]
+a269Node3 [label="Jasso, Vega y Tamez Asociados"]
+a269Node4 [label="Jáquez Velázquez S.A."]
+a269Node5 [label="Jiménez y Rangel"]
+a269Node6 [label="Jáquez Apodaca e Hijos"]
+a269Node7 [label="Jaimes Espinosa e Hijos"]
+struct:f269 -> a269Node0 -> a269Node1 -> a269Node2 -> a269Node3 -> a269Node4 -> a269Node5 -> a269Node6 -> a269Node7;
+a271Node0 [label="Leiva y Miranda"]
+a271Node1 [label="Linares e Hijos"]
+a271Node2 [label="Laureano Madera S.L."]
+a271Node3 [label="Luna e Hijos"]
+a271Node4 [label="Lebrón y Armendáriz"]
+a271Node5 [label="Lomeli Garay Hermanos"]
+struct:f271 -> a271Node0 -> a271Node1 -> a271Node2 -> a271Node3 -> a271Node4 -> a271Node5;
+a272Node0 [label="Madrigal e Hijos"]
+a272Node1 [label="Montalvo S.L."]
+a272Node2 [label="Mojica, Muñiz y Zúñiga Asociados"]
+a272Node3 [label="Mayorga Rivera S.L."]
+struct:f272 -> a272Node0 -> a272Node1 -> a272Node2 -> a272Node3;
+a273Node0 [label="Ayala y Esquivel"]
+struct:f273 -> a273Node0;
+a274Node0 [label="Baca, Soria y Alvarez Asociados"]
+a274Node1 [label="Benavídez y Holguín"]
+a274Node2 [label="Briones Ocampo S.A."]
+a274Node3 [label="Baca, Muñiz y Alcántar Asociados"]
+a274Node4 [label="Briones, Carrero y Duran Asociados"]
+a274Node5 [label="Becerra, Rendón y Blanco Asociados"]
+struct:f274 -> a274Node0 -> a274Node1 -> a274Node2 -> a274Node3 -> a274Node4 -> a274Node5;
+a275Node0 [label="Cadena, Colón y Olivo Asociados"]
+struct:f275 -> a275Node0;
+a276Node0 [label="Domínquez Pagan Hermanos"]
+a276Node1 [label="Duran Varela e Hijos"]
+a276Node2 [label="Dueñas, Esquivel y Morales Asociados"]
+a276Node3 [label="Dávila, Acevedo y Parra Asociados"]
+struct:f276 -> a276Node0 -> a276Node1 -> a276Node2 -> a276Node3;
+a277Node0 [label="Esparza y Monroy"]
+a277Node1 [label="Estrada, Dávila y Partida Asociados"]
+a277Node2 [label="Espino Ojeda Hermanos"]
+a277Node3 [label="Echevarría, Menéndez y Yáñez Asociados"]
+a277Node4 [label="Espinosa y Sotelo"]
+struct:f277 -> a277Node0 -> a277Node1 -> a277Node2 -> a277Node3 -> a277Node4;
+a278Node0 [label="Figueroa, Márquez y Carrero Asociados"]
+struct:f278 -> a278Node0;
+a279Node0 [label="Guardado Esparza S.L."]
+a279Node1 [label="Gollum Galván S.A."]
+a279Node2 [label="Gurule y Sepúlveda"]
+a279Node3 [label="Gollum y Carvajal"]
+struct:f279 -> a279Node0 -> a279Node1 -> a279Node2 -> a279Node3;
+a280Node0 [label="Hinojosa y Solorzano"]
+struct:f280 -> a280Node0;
+a281Node0 [label="Ibarra, Fernández y León Asociados"]
+a281Node1 [label="Irizarry y Treviño"]
+struct:f281 -> a281Node0 -> a281Node1;
+a282Node0 [label="Jaimes Bahena e Hijos"]
+a282Node1 [label="Jasso, Vega y Tamez Asociados"]
+a282Node2 [label="Jiménez y Nazario"]
+a282Node3 [label="Jasso, Atencio y Navarrete Asociados"]
+a282Node4 [label="Juárez Aparicio Hermanos"]
+a282Node5 [label="Jiménez, Alva y Zamudio Asociados"]
+struct:f282 -> a282Node0 -> a282Node1 -> a282Node2 -> a282Node3 -> a282Node4 -> a282Node5;
+a284Node0 [label="Leiva y Miranda"]
+a284Node1 [label="Lara y Cortés"]
+a284Node2 [label="Lebrón y Armendáriz"]
+struct:f284 -> a284Node0 -> a284Node1 -> a284Node2;
+a285Node0 [label="Montemayor y Roldán"]
+a285Node1 [label="Montes Arevalo e Hijos"]
+struct:f285 -> a285Node0 -> a285Node1;
+a287Node0 [label="Bustos e Hijos"]
+a287Node1 [label="Bustos S.L."]
+a287Node2 [label="Badillo e Hijos"]
+a287Node3 [label="Borrego López S.L."]
+a287Node4 [label="Burgos S.A."]
+a287Node5 [label="Briones, Carrero y Duran Asociados"]
+a287Node6 [label="Banda S.L."]
+struct:f287 -> a287Node0 -> a287Node1 -> a287Node2 -> a287Node3 -> a287Node4 -> a287Node5 -> a287Node6;
+a288Node0 [label="Cotto Delapaz Hermanos"]
+struct:f288 -> a288Node0;
+a289Node0 [label="Duran y Paredes"]
+a289Node1 [label="Delgadillo Cardenas S.A."]
+a289Node2 [label="Dueñas y Delafuente"]
+a289Node3 [label="Deleón y Beltrán"]
+a289Node4 [label="Delgadillo y Haro"]
+struct:f289 -> a289Node0 -> a289Node1 -> a289Node2 -> a289Node3 -> a289Node4;
+a290Node0 [label="Espinosa Paredes e Hijos"]
+a290Node1 [label="Espino Ojeda Hermanos"]
+a290Node2 [label="Espino Castro S.A."]
+a290Node3 [label="Espinoza y Zambrano"]
+a290Node4 [label="Esquivel y Carreón"]
+struct:f290 -> a290Node0 -> a290Node1 -> a290Node2 -> a290Node3 -> a290Node4;
+a291Node0 [label="Flórez, Sauceda y Quiñónez Asociados"]
+a291Node1 [label="Figueroa S.L."]
+a291Node2 [label="Fierro, Zamudio y Casillas Asociados"]
+a291Node3 [label="Fernández y Cotto"]
+a291Node4 [label="Fierro y Alcala"]
+a291Node5 [label="Frías S.A."]
+a291Node6 [label="Figueroa Hermanos"]
+struct:f291 -> a291Node0 -> a291Node1 -> a291Node2 -> a291Node3 -> a291Node4 -> a291Node5 -> a291Node6;
+a292Node0 [label="Granado e Hijos"]
+a292Node1 [label="Galindo, Correa y Ruelas Asociados"]
+a292Node2 [label="Gollum y Carvajal"]
+a292Node3 [label="Gracia y Cardenas"]
+struct:f292 -> a292Node0 -> a292Node1 -> a292Node2 -> a292Node3;
+a293Node0 [label="Holguín y Baca"]
+a293Node1 [label="Haro y Villegas"]
+a293Node2 [label="Herrera, Sanabria y Toledo Asociados"]
+struct:f293 -> a293Node0 -> a293Node1 -> a293Node2;
+a294Node0 [label="Irizarry y Treviño"]
+a294Node1 [label="Ibarra y Solano"]
+struct:f294 -> a294Node0 -> a294Node1;
+a295Node0 [label="Jasso, Vega y Tamez Asociados"]
+a295Node1 [label="Jáquez Velázquez S.A."]
+a295Node2 [label="Jasso, Atencio y Navarrete Asociados"]
+a295Node3 [label="Jurado S.A."]
+a295Node4 [label="Juárez Aparicio Hermanos"]
+a295Node5 [label="Jiménez y Montemayor"]
+struct:f295 -> a295Node0 -> a295Node1 -> a295Node2 -> a295Node3 -> a295Node4 -> a295Node5;
+a297Node0 [label="Lara y Cortés"]
+a297Node1 [label="López Menchaca Hermanos"]
+struct:f297 -> a297Node0 -> a297Node1;
+a298Node0 [label="Madrigal e Hijos"]
+struct:f298 -> a298Node0;
+a299Node0 [label="Almanza Cavazos Hermanos"]
+a299Node1 [label="Alonso y Juárez"]
+a299Node2 [label="Ayala y Esquivel"]
+a299Node3 [label="Acosta, Almaraz y Ramírez Asociados"]
+a299Node4 [label="Altamirano Corona S.L."]
+a299Node5 [label="Arteaga e Hijos"]
+a299Node6 [label="Acosta, Arreola y Garrido Asociados"]
+struct:f299 -> a299Node0 -> a299Node1 -> a299Node2 -> a299Node3 -> a299Node4 -> a299Node5 -> a299Node6;
+a300Node0 [label="Bustos y León"]
+struct:f300 -> a300Node0;
+a301Node0 [label="Crespo Alonzo e Hijos"]
+a301Node1 [label="Chávez y Nava"]
+a301Node2 [label="Cortés, Menéndez y Rael Asociados"]
+struct:f301 -> a301Node0 -> a301Node1 -> a301Node2;
+a302Node0 [label="Delagarza y Marrero"]
+a302Node1 [label="Delacrúz, Grijalva y Valenzuela Asociados"]
+struct:f302 -> a302Node0 -> a302Node1;
+a303Node0 [label="Echevarría, Varela y Rivera Asociados"]
+struct:f303 -> a303Node0;
+a304Node0 [label="Fajardo, Santacruz y Sepúlveda Asociados"]
+a304Node1 [label="Figueroa S.L."]
+a304Node2 [label="Fuentes y Yáñez"]
+struct:f304 -> a304Node0 -> a304Node1 -> a304Node2;
+a305Node0 [label="Galindo, Valentín y Quintero Asociados"]
+a305Node1 [label="Godoy Acuña S.A."]
+a305Node2 [label="Garza Toro e Hijos"]
+a305Node3 [label="Gollum Galván S.A."]
+a305Node4 [label="Guevara Solorio Hermanos"]
+a305Node5 [label="Guajardo, Rivera y Montero Asociados"]
+a305Node6 [label="Garica Nieves e Hijos"]
+struct:f305 -> a305Node0 -> a305Node1 -> a305Node2 -> a305Node3 -> a305Node4 -> a305Node5 -> a305Node6;
+a306Node0 [label="Haro y Villegas"]
+a306Node1 [label="Heredia y Angulo"]
+a306Node2 [label="Hidalgo, Mata y Manzanares Asociados"]
+a306Node3 [label="Herrera Vera S.A."]
+struct:f306 -> a306Node0 -> a306Node1 -> a306Node2 -> a306Node3;
+a308Node0 [label="Juárez y Hurtado"]
+a308Node1 [label="Jaramillo y Salinas"]
+struct:f308 -> a308Node0 -> a308Node1;
+a310Node0 [label="Linares e Hijos"]
+struct:f310 -> a310Node0;
+a311Node0 [label="Mondragón y Rentería"]
+a311Node1 [label="Montalvo S.L."]
+struct:f311 -> a311Node0 -> a311Node1;
+a312Node0 [label="Arroyo Almanza S.A."]
+a312Node1 [label="Archuleta y Laboy"]
+a312Node2 [label="Acosta, Almaraz y Ramírez Asociados"]
+struct:f312 -> a312Node0 -> a312Node1 -> a312Node2;
+a313Node0 [label="Bonilla S.L."]
+struct:f313 -> a313Node0;
+a315Node0 [label="Domínquez, Alarcón y Barela Asociados"]
+a315Node1 [label="Delacrúz S.A."]
+struct:f315 -> a315Node0 -> a315Node1;
+a316Node0 [label="Espinosa Paredes e Hijos"]
+a316Node1 [label="Espinosa y Sotelo"]
+a316Node2 [label="Espinoza y Zambrano"]
+struct:f316 -> a316Node0 -> a316Node1 -> a316Node2;
+a317Node0 [label="Figueroa Serna S.L."]
+a317Node1 [label="Flórez Alba S.A."]
+a317Node2 [label="Farías Castro S.A."]
+struct:f317 -> a317Node0 -> a317Node1 -> a317Node2;
+a319Node0 [label="Herrera, Sanabria y Toledo Asociados"]
+a319Node1 [label="Huerta e Hijos"]
+a319Node2 [label="Hinojosa Llamas e Hijos"]
+a319Node3 [label="Hinojosa y Solorzano"]
+a319Node4 [label="Hurtado Archuleta S.L."]
+a319Node5 [label="Hurtado y Orellana"]
+a319Node6 [label="Hurtado y Terán"]
+a319Node7 [label="Herrera Vera S.A."]
+struct:f319 -> a319Node0 -> a319Node1 -> a319Node2 -> a319Node3 -> a319Node4 -> a319Node5 -> a319Node6 -> a319Node7;
+a320Node0 [label="Irizarry y Treviño"]
+a320Node1 [label="Iglesias, Valdés y Echevarría Asociados"]
+struct:f320 -> a320Node0 -> a320Node1;
+a321Node0 [label="Jaimes Bahena e Hijos"]
+a321Node1 [label="Jaime, Cavazos y Galván Asociados"]
+a321Node2 [label="Jaramillo y Salinas"]
+a321Node3 [label="Jiménez y Nazario"]
+struct:f321 -> a321Node0 -> a321Node1 -> a321Node2 -> a321Node3;
+a323Node0 [label="Lira Corrales Hermanos"]
+a323Node1 [label="Leiva y Miranda"]
+a323Node2 [label="Lara y Cortés"]
+a323Node3 [label="Luna e Hijos"]
+a323Node4 [label="Lebrón y Armendáriz"]
+struct:f323 -> a323Node0 -> a323Node1 -> a323Node2 -> a323Node3 -> a323Node4;
+a324Node0 [label="Murillo Domínguez S.L."]
+a324Node1 [label="Mondragón y Rentería"]
+a324Node2 [label="Madrigal e Hijos"]
+a324Node3 [label="Matías Hermanos"]
+a324Node4 [label="Manzanares, Trujillo y Escamilla Asociados"]
+struct:f324 -> a324Node0 -> a324Node1 -> a324Node2 -> a324Node3 -> a324Node4;
 }
