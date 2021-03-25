@@ -1,0 +1,3 @@
+digraph exaxtday {
+node [shape=record];
+rankdir = LR

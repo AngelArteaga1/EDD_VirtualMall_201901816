@@ -1,0 +1,11 @@
+digraph years {
+rankdir=UD
+node[shape=box, fontname="Bookman Old Style", style=filled, fillcolor=lightpink]
+concentrate=true
+labelloc="t";
+label="Estructura de los Años";
+fontsize=30;
+nodo2017 [ label ="2017"];
+nodo1999 [ label ="1999"];
+nodo2017->nodo1999
+}

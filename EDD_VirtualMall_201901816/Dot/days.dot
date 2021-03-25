@@ -1,0 +1,18 @@
+digraph days {
+rankdir = TB;
+node [shape=rectangle, height=0.5, width=1.5, style = filled];
+graph[ nodesep = 0.5];
+labelloc="t";
+label="Estructura de 2017, diciembre";
+fontsize=30;
+node0 [label="Calendario", fillcolor = brown1];
+nodex1 [label="Dia 1", fillcolor = burlywood1];
+nodey0 [label="Amazon Coins", fillcolor = burlywood1];
+node1_0 [label="Pedidos", fillcolor = cornflowerblue];
+node0 -> nodex1[ dir=both];
+nodex1 -> node1_0[dir=both];
+node0 -> nodey0[ dir=both];
+nodey0 -> node1_0[constraint=false, dir=both];
+{ rank=same; node0; nodex1; }
+{ rank=same; nodey0;node1_0;};
+}

@@ -412,8 +412,99 @@ func request(){
 	Servidor.HandleFunc("/getTiendas", GetTiendas).Methods("GET")
 	Servidor.HandleFunc("/getProductos",GetProductos).Methods("POST")
 	Servidor.HandleFunc("/cargarPedidos",CargarPedidos).Methods("POST")
-	//Servidor.HandleFunc("/graficarAnios", GraphAnios).Methods("POST")
+	Servidor.HandleFunc("/graficarPedidos", GraphPedidos).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(Servidor)))
+}
+
+func GraphPedidos(w http.ResponseWriter, r *http.Request){
+	body, _ := ioutil.ReadAll(r.Body)
+	var Data string
+	json.Unmarshal(body, &Data)
+	fecha := strings.Split(Data, "-")
+	//obtenemos los datos necesarios:
+	year, _ := strconv.ParseInt(fecha[2], 10, 64)
+	month, _ := strconv.ParseInt(fecha[1], 10, 64)
+	day, _ := strconv.ParseInt(fecha[0], 10, 64)
+	dep := fecha[3]
+	fmt.Println("YEAR: ", year)
+	if ArbolPedidos.raiz != nil{
+		// *************************GRAFICAMOS LOS AÑOS *************************
+		f, err := os.Create("Dot/years.dot")
+		Errores(err)
+		f.WriteString("digraph years {\n")
+		f.WriteString("rankdir=UD\n")
+		f.WriteString("node[shape=box, fontname=\"Bookman Old Style\", style=filled, fillcolor=lightpink]\n")
+		f.WriteString("concentrate=true\n")
+		f.WriteString("labelloc=\"t\";\nlabel=\"Estructura de los Años\";\nfontsize=30;\n")
+		f.WriteString(graph(ArbolPedidos.raiz))
+		f.WriteString("}\n")
+
+		path, _ := exec.LookPath("dot")
+		cmd, _ := exec.Command(path, "-Tpng", "Dot/years.dot").Output()
+		mode := int(0777)
+		ioutil.WriteFile("Reportes/years.png", cmd, os.FileMode(mode))
+		fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+
+		//************************* GRAFICAMOS LOS MESES *************************
+		if existe(ArbolPedidos.raiz, int(year)) == true{
+			listaMeses := get(ArbolPedidos.raiz, int(year))
+			f, err = os.Create("Dot/month.dot")
+			Errores(err)
+			f.WriteString("digraph month {\n")
+			f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", width=1.5, style=filled, " +
+				"fillcolor=cadetblue];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+				"Estructura de Meses de "+ strconv.Itoa(int(year)) +"\";\nfontsize=30;\nrankdir=\"LR\";\n")
+			f.WriteString(listaMeses.meses.GraphNodes())
+			f.WriteString("}\n")
+			path, _ := exec.LookPath("dot")
+			cmd, _ := exec.Command(path, "-Tpng", "Dot/month.dot").Output()
+			mode := int(0777)
+			ioutil.WriteFile("Reportes/month.png", cmd, os.FileMode(mode))
+			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+			//************************* GRAFICAMOS LOS MESES *************************
+			if listaMeses.meses.existe(convertMonth(int(month))) == true {
+				matrizDay := listaMeses.meses.get(convertMonth(int(month)))
+				f, err = os.Create("Dot/days.dot")
+				Errores(err)
+				f.WriteString("digraph days {\n")
+				f.WriteString("rankdir = TB;\nnode [shape=rectangle, height=0.5, width=1.5, style = filled];\ngraph[ nodesep = 0.5];\n")
+				f.WriteString("labelloc=\"t\";\nlabel=\"Estructura de "+ strconv.Itoa(int(year)) + ", " + strings.ToLower(matrizDay.mes	) + "\";\nfontsize=30;\n")
+				f.WriteString(matrizDay.m.graphMatrix())
+				f.WriteString("}")
+
+				path, _ := exec.LookPath("dot")
+				cmd, _ := exec.Command(path, "-Tpng", "Dot/days.dot").Output()
+				mode := int(0777)
+				ioutil.WriteFile("Reportes/days.png", cmd, os.FileMode(mode))
+				fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+				//************************* GRAFICAMOS EL DIA *************************
+				if matrizDay.m.existe(int(day), GetDepartamento(dep)) == true{
+					listaDay := matrizDay.m.get(int(day), GetDepartamento(dep))
+					f, err = os.Create("Dot/exaxtday.dot")
+					Errores(err)
+					f.WriteString("digraph exaxtday {\n")
+					f.WriteString("node [shape=record];\nrankdir = LR")
+					f.WriteString(listaDay.productos.GraphNodes())
+					f.WriteString("}")
+				} else {
+				//NO EXISTE EL DIA CON SU DEPARTAMENTO
+				}
+			} else {
+				//NO EXISTE EL MES
+			}
+		} else {
+			f.WriteString("digraph month {\n")
+			f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+				"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+				"No Existen Pedidos Dentro de ese Año :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+			f.WriteString("}\n")
+			path, _ := exec.LookPath("dot")
+			cmd, _ := exec.Command(path, "-Tpng", "Dot/month.dot").Output()
+			mode := int(0777)
+			ioutil.WriteFile("Reportes/month.png", cmd, os.FileMode(mode))
+			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+		}
+	}
 }
 
 func CargarPedidos(w http.ResponseWriter, r *http.Request){
@@ -447,6 +538,7 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request){
 			ListaCodigos.Add(productos, tienda, dep, calificacion)
 			//Creamos la matriz de listas de codigos:
 			matrix := NewMatriz()
+			fmt.Println("INDICE DEL DEPARTAMENTO ", dep , ": ", GetDepartamento(dep))
 			matrix.Insert(ListaCodigos, int(day), GetDepartamento(dep))
 			//Creamos la lista de matrices:
 			listaMatrices := &ListaM{nil, nil, 0}
@@ -465,6 +557,7 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request){
 				ListaCodigos.Add(productos, tienda, dep, calificacion)
 				//Creamos la matriz de listas de codigos:
 				matrix := NewMatriz()
+				fmt.Println("INDICE DEL DEPARTAMENTO ", dep , ": ", GetDepartamento(dep))
 				matrix.Insert(ListaCodigos, int(day), GetDepartamento(dep))
 				//Creamos la lista de matrices:
 				nodoArbol.meses.Add(matrix, convertMonth(int(month)))
@@ -475,18 +568,21 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request){
 				//Obtenemos el nodo donde se encuentre el mes:
 				nodoMes := nodoArbol.meses.get(convertMonth(int(month)))
 				fmt.Println("HASTA AQUI: ", "5.1")
+				fmt.Println("INDICE DEL DEPARTAMENTO ", dep , ": ", GetDepartamento(dep))
 				if nodoMes.m.existe(int(day), GetDepartamento(dep)) == false {
 					fmt.Println("HASTA AQUI: ", "5.5")
 					//Creamos la lista de codigos:
 					ListaCodigos := &ListaInt{nil, nil, 0}
 					ListaCodigos.Add(productos, tienda, dep, calificacion)
 					//Creamos la matriz de listas de codigos:
+					fmt.Println("INDICE DEL DEPARTAMENTO ", dep , ": ", GetDepartamento(dep))
 					nodoMes.m.Insert(ListaCodigos, int(day), GetDepartamento(dep))
 					fmt.Println("HASTA AQUI: ", "6")
 				} else {
 					fmt.Println("HASTA AQUI: ", "7")
 					//INSERTAMOS PARA EL NODO DE LA POSICION DE LA MATRIZ EXISTENTE
 					//Obtenemos el nodo donde se encuentre el dia:
+					fmt.Println("INDICE DEL DEPARTAMENTO ", dep , ": ", GetDepartamento(dep))
 					nodoDia := nodoMes.m.get(int(day), GetDepartamento(dep))
 					//Agregamos el pedido
 					nodoDia.productos.Add(productos, tienda, dep, calificacion)
@@ -495,21 +591,7 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request){
 			}
 		}
 	}
-	//GRAFICAMOS LA SITUACION
-	f, err := os.Create("Dot/anios.dot")
-	Errores(err)
-	f.WriteString("digraph anios {\n")
-	f.WriteString("rankdir=UD\n")
-	f.WriteString("node[shape=box]\n")
-	f.WriteString("concentrate=true\n")
-	f.WriteString(graph(ArbolPedidos.raiz))
-	f.WriteString("}\n")
-
-	path, _ := exec.LookPath("dot")
-	cmd, _ := exec.Command(path, "-Tjpg", "Dot/anios.dot").Output()
-	mode := int(0777)
-	ioutil.WriteFile("Reportes/anios.jpg", cmd, os.FileMode(mode))
-	fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+	fmt.Fprint(w, "La carga fue realizada exitosamente!")
 }
 
 func GetProductos(w http.ResponseWriter, r *http.Request){
@@ -698,7 +780,58 @@ func (l *ListaInt) Add(valor []CodigoX, tienda, departamento string, calificacio
 	}
 	l.len++
 }
-
+//GRAFICAR NODOS
+func (l *ListaInt) GraphNodes()string{
+	cadena := ""
+	cont := 0
+	temp := l.Inicio
+	for temp != nil{
+		cadena = cadena + "struct" + strconv.Itoa(cont)  + "[label=\""
+		fmt.Println("HOLA BB")
+		for i := 0; i < len(temp.Dato); i++{
+			//OBTENEMOS LA INFORMACION DEL PRODUCTO
+			fmt.Println("HOLA BB2")
+			name := temp.tienda
+			dep := temp.departamento
+			cal := temp.calificacion
+			cod := temp.Dato[i].Codigo
+			//Buscamos el codigo dentro de los productos:
+			for j := 0; j < ListaInventario.len; j++{
+				fmt.Println("HOLA BB3")
+				NodoAct := ListaInventario.Get(j)
+				if NodoAct.tienda == name && NodoAct.departamento == dep && NodoAct.calificacion == cal{
+					ArbolAct := NodoAct.Dato
+					fmt.Println("HOLA BB4")
+					if ArbolAct.exist(ArbolAct.root, cod) ==  true {
+						fmt.Println("HOLA BB5")
+						product := ArbolAct.get(ArbolAct.root, cod)
+						cadena = cadena + "Producto: " + product.value.Nombre + "\\n"
+						cadena = cadena + "Precio: " + strconv.Itoa(int(product.value.Precio)) + "\\n"
+						cadena = cadena + "Codigo: " + strconv.Itoa(product.value.Codigo) + "\\n"
+						if i != len(temp.Dato)-1{
+							cadena = cadena + "|"
+						}
+					}
+				}
+			}
+			cadena = cadena + "];\n"
+			cont++
+			temp = temp.Siguiente
+		}
+	}
+	cont = 0
+	temp = l.Inicio
+	for temp != nil{
+		if cont == l.len-1{
+			cadena = cadena + "struct" + strconv.Itoa(cont)
+		} else {
+			cadena = cadena + "struct" + strconv.Itoa(cont) + " ->"
+		}
+		cont++
+		temp = temp.Siguiente
+	}
+	return cadena
+}
 /*****************************************************************************/
 //CLASE NODO XTIENDA
 type NodoXTienda struct {
@@ -740,18 +873,18 @@ func (l *ListaXTienda) GetArray() []XTiendas{
 }
 
 /*****************************************************************************/
+//CLASE LISTA MATRIZ
+type ListaM struct{
+	Inicio *NodoM
+	Fin *NodoM
+	len int
+}
 //CLASE NODO MATRIZ
 type NodoM struct {
 	Siguiente *NodoM
 	Anterior *NodoM
 	m *matriz
 	mes string
-}
-//CLASE LISTA MATRIZ
-type ListaM struct{
-	Inicio *NodoM
-	Fin *NodoM
-	len int
 }
 //ADD
 //INSERTAR UN NODO MATRIZ
@@ -788,6 +921,18 @@ func (l *ListaM) get(mes string) *NodoM{
 		Aux = Aux.Siguiente
 	}
 	return nil
+}
+func (l *ListaM) GraphNodes() string{
+	cadena := ""
+	temp := l.Inicio
+	for temp != nil{
+		cadena = cadena + "nodo" + temp.mes + "[ label =\"" + temp.mes + "\"]\n"
+		if temp.Anterior != nil{
+			cadena = cadena + "nodo" + temp.Anterior.mes + "->nodo" + temp.mes + "\n"
+		}
+		temp = temp.Siguiente
+	}
+	return cadena
 }
 
 /*****************************************************************************/
@@ -1074,6 +1219,33 @@ func (bst BST) createList(tmp *Node){
 		bst.createList(tmp.left)
 		bst.createList(tmp.right)
 	}
+}
+//FUNCION PARA REVISAR SI EXISTE
+func (bst BST) exist(tmp *Node, value int) bool{
+	if tmp != nil {
+		if tmp.value.Codigo == value{
+			return true
+		} else {
+			if (bst.exist(tmp.left, value) || bst.exist(tmp.right, value)){
+				return true
+			}
+		}
+	}
+	return false
+}
+func (bst BST)get(tmp *Node, value int)*Node{
+	if tmp != nil{
+		if tmp.value.Codigo == value{
+			return tmp
+		} else {
+			if (bst.get(tmp.left, value) != nil){
+				return bst.get(tmp.left, value)
+			} else {
+				return bst.get(tmp.right, value)
+			}
+		}
+	}
+	return nil
 }
 
 /*****************************************************************************/
@@ -1362,6 +1534,85 @@ func (m *matriz) getSizeCol() int{
 		size++
 	}
 	return size
+}
+
+func (m *matriz) graphMatrix() string{
+	cadena := "node0 [label=\"Calendario\", fillcolor = brown1];\n"
+	//DEFINIMOS LA PRIMERA FILA
+	tempH := m.lst_h.first
+	for tempH != nil{
+		cadena = cadena + "nodex" + strconv.Itoa(tempH.header) + " [label=\"Dia " + strconv.Itoa(tempH.header) + "\", fillcolor = burlywood1];\n"
+		tempH = tempH.siguiente
+	}
+	//DEFINIMOS LA PRIMERA COLUMNA
+	tempV := m.lst_v.first
+	for tempV != nil{
+		cadena = cadena + "nodey" + strconv.Itoa(tempV.header) + " [label=\"" + MPosiciones[0][tempV.header][0].Departamento + "\", fillcolor = burlywood1];\n"
+		tempV = tempV.siguiente
+	}
+	//DEFINIMOS LOS PEDIDOS
+	cabecera := m.lst_h.first
+	for cabecera != nil{
+		temp := cabecera.abajo
+		for temp != nil{
+			cadena = cadena + "node" + strconv.Itoa(temp.x) + "_" + strconv.Itoa(temp.y) + " [label=\"Pedidos\", fillcolor = cornflowerblue];\n"
+			temp = temp.abajo
+		}
+		cabecera = cabecera.siguiente
+	}
+	//RECORREMOS HORIZONTALMENTE:
+	cabecera = m.lst_h.first
+	cadena = cadena + "node0 -> nodex" + strconv.Itoa(cabecera.header) + "[ dir=both];\n"
+	for cabecera != nil{
+		if cabecera.siguiente != nil{
+			cadena = cadena + "nodex" + strconv.Itoa(cabecera.header) + " -> nodex" + strconv.Itoa(cabecera.siguiente.header) + "[dir=both];\n"
+		}
+		cadena = cadena + "nodex" + strconv.Itoa(cabecera.header)
+		temp := cabecera.abajo
+		for temp != nil{
+			cadena = cadena + " -> node" + strconv.Itoa(temp.x) + "_" + strconv.Itoa(temp.y)
+			temp = temp.abajo
+		}
+		cadena = cadena + "[dir=both];\n"
+		cabecera = cabecera.siguiente
+	}
+	//RECORREMOS VERTICALMENTE:
+	cabecera = m.lst_v.first
+	cadena = cadena + "node0 -> nodey" + strconv.Itoa(cabecera.header) + "[ dir=both];\n"
+	for cabecera != nil{
+		if cabecera.siguiente != nil{
+			cadena = cadena + "nodey" + strconv.Itoa(cabecera.header) + " -> nodey" + strconv.Itoa(cabecera.siguiente.header) + "[dir=both];\n"
+		}
+		cadena = cadena + "nodey" + strconv.Itoa(cabecera.header)
+		temp := cabecera.derecha
+		for temp != nil{
+			cadena = cadena + " -> node" + strconv.Itoa(temp.x) + "_" + strconv.Itoa(temp.y)
+			temp = temp.derecha
+		}
+		cadena = cadena + "[constraint=false, dir=both];\n"
+		cabecera = cabecera.siguiente
+	}
+	//POR ULTIMO SOLO RANKEAMOS HORIZONTAL
+	tempH = m.lst_h.first
+	cadena = cadena + "{ rank=same; node0; "
+	for tempH != nil{
+		cadena = cadena + "nodex" + strconv.Itoa(tempH.header) + "; "
+		tempH = tempH.siguiente
+	}
+	cadena = cadena + "}\n"
+	//POR ULTIMO SOLO RANKEAMOS VERTICAL
+	cabecera = m.lst_v.first
+	for cabecera != nil{
+		cadena = cadena + "{ rank=same; nodey" + strconv.Itoa(cabecera.header) + ";"
+		temp := cabecera.derecha
+		for temp != nil{
+			cadena = cadena + "node" + strconv.Itoa(temp.x) + "_" + strconv.Itoa(temp.y) + ";"
+			temp = temp.derecha
+		}
+		cadena = cadena + "};\n"
+		cabecera = cabecera.siguiente
+	}
+	return cadena
 }
 
 /*****************************************************************************/
