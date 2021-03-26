@@ -1,0 +1,89 @@
+<main role="main">
+
+    <div class="container">
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <form>
+                    <div class="form-row align-items-center">
+                        <div class="col-12 my-2">
+                            <button (click)="Graficar()" type="submit" class="btn btn-info">Generar reportes</button>
+                        </div>
+                      <div class="col-sm-6 my-1">
+                        <label class="sr-only" for="inlineFormInputName">Date</label>
+                        <input [formControl]="date" type="date" class="form-control" id="inlineFormInputName" placeholder="Fecha">
+                      </div>
+                      <div class="col-sm-6 my-1">
+                        <label class="sr-only" for="inlineFormInputGroupUsername">Departamento</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">@</div>
+                          </div>
+                          <input [formControl]="dep" type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="Departamento">
+                        </div>
+                      </div>
+                      <div class="col-3 my-2">
+                        <a href="assets/reportes/days.png" download type="submit" class="btn btn-outline-info">Guardar Matriz</a>
+                      </div>
+                      <div class="col-3 my-2">
+                        <a href="assets/reportes/years.png" download type="submit" class="btn btn-outline-info">Guardar Años</a>
+                      </div>
+                      <div class="col-3 my-2">
+                        <a href="assets/reportes/month.png" download type="submit" class="btn btn-outline-info">Guardar Meses</a>
+                      </div>
+                      <div class="col-3 my-2">
+                        <a href="assets/reportes/exaxtday.png" download type="submit" class="btn btn-outline-info">Guardar Dia</a>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+          <div class="col-2"></div>
+          <img src="assets/reportes/years.png" class="col-8" alt="Responsive image">
+          <div class="col-2"></div>
+          </div>
+          <br>
+          <hr>
+          <div class="row">
+          <div class="col-2"></div>
+          <img src="assets/reportes/month.png" class="col-8" alt="Responsive image">
+          <div class="col-2"></div>
+        </div>
+          <br>
+          <hr>
+          <div class="row">
+          <div class="col-2"></div>
+          <img src="assets/reportes/days.png" class="col-8" alt="Responsive image">
+          <div class="col-2"></div>
+        </div>
+          <br>
+          <hr>
+          <div class="row">
+            <div class="col-2"></div>
+            <img src="assets/reportes/exaxtday.png" class="col-8" alt="Responsive image">
+            <div class="col-2"></div>
+          </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+      <br>
+      <div class="card">
+          <div class="card-body">
+            <blockquote class="blockquote mb-0">
+              <label for="inputPassword5">Cargar Pedidos</label>
+              <input type="text" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+              <small id="passwordHelpBlock" class="form-text text-muted">
+              Para poder cargar pedidos deberá de ingresar los pedido en formato json en el apartado de arriba.
+              </small>
+            </blockquote>
+          </div>
+        </div>
+  </div>
+
+  <br>
+
+</main>

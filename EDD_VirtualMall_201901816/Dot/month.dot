@@ -2,10 +2,8 @@ digraph month {
 node [shape=Msquare, fontname="Bookman Old Style", width=1.5, style=filled, fillcolor=cadetblue];
 edge [dir="both"]
 labelloc="t";
-label="Estructura de Meses de 2017";
+label="Estructura de Meses de 2021";
 fontsize=30;
 rankdir="LR";
-nodoDICIEMBRE[ label ="DICIEMBRE"]
-nodoNOVIEMBRE[ label ="NOVIEMBRE"]
-nodoDICIEMBRE->nodoNOVIEMBRE
+nodoMARZO[ label ="MARZO"]
 }

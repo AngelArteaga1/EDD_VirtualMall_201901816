@@ -1,3 +1,9 @@
 digraph exaxtday {
-node [shape=record];
+node [shape=record, style = filled, fillcolor=darkslategray];
 rankdir = LR
+labelloc="t";
+label="Estructura, 25 de marzo del 2021, Sensores";
+fontsize=30;
+struct0[label="Producto: P40 Pro\nPrecio: 5500\nCodigo: 1222\n", fontcolor="aliceblue"];
+struct1[label="Producto: P40 Pro\nPrecio: 5500\nCodigo: 1222\n", fontcolor="aliceblue"];
+struct0 ->struct1}

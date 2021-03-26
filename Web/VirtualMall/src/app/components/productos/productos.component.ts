@@ -44,10 +44,6 @@ export class ProductosComponent implements OnInit {
       console.log("Adios bb")
     })
 
-    //console.log("Dale papi: ", this.store.Calificacion);
-    //console.log(this.store)
-    //console.log("Dale papi + 1: ", this.store.Calificacion + 1)
-
     this.TiendasService.getListaProductos(this.store).subscribe((dataList:Producto[])=>{
       console.log(dataList)
       this.productos = dataList;
@@ -66,7 +62,10 @@ export class ProductosComponent implements OnInit {
               '<h5 class="card-title">' + product.Nombre + '</h5>'+
               '<p class="card-text">' + product.Descripcion + '</p>'+
               '<p class="text-success">Precio: Q' + product.Precio + '</p>'+
-              '<a href="#" class="btn btn-primary">Comprar</a>'+
+              '<a role="button" class="btn btn-primary" href="http://localhost:4200/carrito/' + this.store.Nombre + 
+              '/' + this.store.Departamento + '/' + this.store.Calificacion + 
+              '/' + product.Nombre + '/' + product.Descripcion + '/_' + 
+              '/' + product.Precio + '/' + product.Codigo + '/add">Comprar</a>'+
             '</div>'+
         '</div>'
         if (contador == 3 || i == this.productos.length - 1){
@@ -82,6 +81,10 @@ export class ProductosComponent implements OnInit {
       this.mostrarMensajeError = true
       console.log("Adios bb")
     })
+  }
+
+  onClickMe(){
+    console.log("HOLA bb")
   }
 
   ngOnInit(): void {

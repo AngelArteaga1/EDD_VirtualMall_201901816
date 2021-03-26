@@ -26,6 +26,7 @@ var lenCal int
 var ListaInventario ListaProducto
 var ListaProductos ListaPro
 var ArbolPedidos AVL
+var Carrito ListaItem
 
 type XTiendas struct {
 	Nombre string
@@ -92,6 +93,21 @@ type Pedido struct {
 }
 type CodigoX struct {
 	Codigo int
+}
+
+type item struct {
+	Tienda string
+	Departamento string
+	Calificacion int
+	Producto string
+	Descripcion string
+	Imagen string
+	Precio int
+	Codigo int
+}
+
+type Cad struct {
+	Cadena string
 }
 
 func main() {
@@ -413,14 +429,83 @@ func request(){
 	Servidor.HandleFunc("/getProductos",GetProductos).Methods("POST")
 	Servidor.HandleFunc("/cargarPedidos",CargarPedidos).Methods("POST")
 	Servidor.HandleFunc("/graficarPedidos", GraphPedidos).Methods("POST")
+	Servidor.HandleFunc("/setItemCarrito", setItemCarrito).Methods("POST")
+	Servidor.HandleFunc("/DeleteItemCarrito", DeleteItemCarrito).Methods("POST")
 	log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}), handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(Servidor)))
+}
+
+func TrueItem(data item)item{
+
+	for i := 0; i < ListaInventario.len; i++{
+		bb := ListaInventario.Get(i)
+		if bb.calificacion == data.Calificacion && bb.departamento == data.Departamento && bb.tienda == data.Tienda{
+			arbol := bb.Dato
+			if arbol.exist(arbol.root, data.Codigo) == true{
+				data.Imagen = arbol.get(arbol.root, data.Codigo).value.Imagen
+			}
+		}
+	}
+	return data
+}
+
+func DeleteItemCarrito(w http.ResponseWriter, r *http.Request){
+	fmt.Println("*****************DESDE ACA PAPA*************")
+	body, _ := ioutil.ReadAll(r.Body)
+	var Data item
+	json.Unmarshal(body, &Data)
+	fmt.Println(Data)
+	//AQUI EMPEZAMOS
+	if &Carrito == nil{
+		if Data.Codigo != -1  && Data.Calificacion != -1 && Data.Precio != -1{
+			Carrito = ListaItem{nil, nil, 0}
+			Data = TrueItem(Data)
+			Carrito.Delete(Data)
+		}
+	} else {
+		if Data.Codigo != -1  && Data.Calificacion != -1 && Data.Precio != -1{
+			Data = TrueItem(Data)
+			Carrito.Delete(Data)
+		}
+	}
+	CarritoArray := Carrito.GetArray()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(CarritoArray)
+}
+
+func setItemCarrito(w http.ResponseWriter, r *http.Request){
+	fmt.Println("*****************DESDE ACA PAPA*************")
+	body, _ := ioutil.ReadAll(r.Body)
+	var Data item
+	json.Unmarshal(body, &Data)
+	fmt.Println(Data)
+	//AQUI EMPEZAMOS
+	if &Carrito == nil{
+		if Data.Codigo != -1  && Data.Calificacion != -1 && Data.Precio != -1{
+			Carrito = ListaItem{nil, nil, 0}
+			Data = TrueItem(Data)
+			Carrito.Add(Data)
+		}
+	} else {
+		if Data.Codigo != -1  && Data.Calificacion != -1 && Data.Precio != -1{
+			Data = TrueItem(Data)
+			Carrito.Add(Data)
+		}
+	}
+	CarritoArray := Carrito.GetArray()
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusCreated)
+	json.NewEncoder(w).Encode(CarritoArray)
 }
 
 func GraphPedidos(w http.ResponseWriter, r *http.Request){
 	body, _ := ioutil.ReadAll(r.Body)
-	var Data string
-	json.Unmarshal(body, &Data)
-	fecha := strings.Split(Data, "-")
+	var Cadena Cad
+	json.Unmarshal(body, &Cadena)
+	fmt.Println("DATA: ", Cadena)
+	fecha := strings.Split(Cadena.Cadena, "-")
 	//obtenemos los datos necesarios:
 	year, _ := strconv.ParseInt(fecha[2], 10, 64)
 	month, _ := strconv.ParseInt(fecha[1], 10, 64)
@@ -442,7 +527,7 @@ func GraphPedidos(w http.ResponseWriter, r *http.Request){
 		path, _ := exec.LookPath("dot")
 		cmd, _ := exec.Command(path, "-Tpng", "Dot/years.dot").Output()
 		mode := int(0777)
-		ioutil.WriteFile("Reportes/years.png", cmd, os.FileMode(mode))
+		ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\years.png", cmd, os.FileMode(mode))
 		fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 
 		//************************* GRAFICAMOS LOS MESES *************************
@@ -459,7 +544,7 @@ func GraphPedidos(w http.ResponseWriter, r *http.Request){
 			path, _ := exec.LookPath("dot")
 			cmd, _ := exec.Command(path, "-Tpng", "Dot/month.dot").Output()
 			mode := int(0777)
-			ioutil.WriteFile("Reportes/month.png", cmd, os.FileMode(mode))
+			ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\month.png", cmd, os.FileMode(mode))
 			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 			//************************* GRAFICAMOS LOS MESES *************************
 			if listaMeses.meses.existe(convertMonth(int(month))) == true {
@@ -468,14 +553,15 @@ func GraphPedidos(w http.ResponseWriter, r *http.Request){
 				Errores(err)
 				f.WriteString("digraph days {\n")
 				f.WriteString("rankdir = TB;\nnode [shape=rectangle, height=0.5, width=1.5, style = filled];\ngraph[ nodesep = 0.5];\n")
-				f.WriteString("labelloc=\"t\";\nlabel=\"Estructura de "+ strconv.Itoa(int(year)) + ", " + strings.ToLower(matrizDay.mes	) + "\";\nfontsize=30;\n")
+				f.WriteString("labelloc=\"t\";\nlabel=\"Estructura de "+ strconv.Itoa(int(year)) +
+					", " + strings.ToLower(matrizDay.mes) + "\";\nfontsize=30;\n")
 				f.WriteString(matrizDay.m.graphMatrix())
 				f.WriteString("}")
 
 				path, _ := exec.LookPath("dot")
 				cmd, _ := exec.Command(path, "-Tpng", "Dot/days.dot").Output()
 				mode := int(0777)
-				ioutil.WriteFile("Reportes/days.png", cmd, os.FileMode(mode))
+				ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\days.png", cmd, os.FileMode(mode))
 				fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 				//************************* GRAFICAMOS EL DIA *************************
 				if matrizDay.m.existe(int(day), GetDepartamento(dep)) == true{
@@ -483,16 +569,60 @@ func GraphPedidos(w http.ResponseWriter, r *http.Request){
 					f, err = os.Create("Dot/exaxtday.dot")
 					Errores(err)
 					f.WriteString("digraph exaxtday {\n")
-					f.WriteString("node [shape=record];\nrankdir = LR")
+					f.WriteString("node [shape=record, style = filled, fillcolor=darkslategray];\nrankdir = LR\n")
+					f.WriteString("labelloc=\"t\";\nlabel=\"Estructura, "+ strconv.Itoa(int(day)) +
+						" de " + strings.ToLower(matrizDay.mes) + " del " + strconv.Itoa(int(year)) +
+						", " + dep + "\";\nfontsize=30;\n")
 					f.WriteString(listaDay.productos.GraphNodes())
 					f.WriteString("}")
+					path, _ := exec.LookPath("dot")
+					cmd, _ := exec.Command(path, "-Tpng", "Dot/exaxtday.dot").Output()
+					mode := int(0777)
+					ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\exaxtday.png", cmd, os.FileMode(mode))
+					fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 				} else {
 				//NO EXISTE EL DIA CON SU DEPARTAMENTO
+					f, err = os.Create("Dot/exaxtday.dot")
+					f.WriteString("digraph month {\n")
+					f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+						"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+						"No Existen Pedidos Dentro de ese Dia y Departamento :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+					f.WriteString("}\n")
+					path, _ := exec.LookPath("dot")
+					cmd, _ := exec.Command(path, "-Tpng", "Dot/exaxtday.dot").Output()
+					mode := int(0777)
+					ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\exaxtday.png", cmd, os.FileMode(mode))
+					fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 				}
 			} else {
 				//NO EXISTE EL MES
+				f, err = os.Create("Dot/days.dot")
+				f.WriteString("digraph month {\n")
+				f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+					"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+					"No Existen Pedidos Dentro de ese Mes :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+				f.WriteString("}\n")
+				path, _ := exec.LookPath("dot")
+				cmd, _ := exec.Command(path, "-Tpng", "Dot/days.dot").Output()
+				mode := int(0777)
+				ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\days.png", cmd, os.FileMode(mode))
+				fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+				//NO EXISTE EL DIA CON SU DEPARTAMENTO
+				f, err = os.Create("Dot/exaxtday.dot")
+				f.WriteString("digraph month {\n")
+				f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+					"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+					"No Existen Pedidos Dentro de ese Dia y Departamento :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+				f.WriteString("}\n")
+				path, _ = exec.LookPath("dot")
+				cmd, _ = exec.Command(path, "-Tpng", "Dot/exaxtday.dot").Output()
+				mode = int(0777)
+				ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\exaxtday.png", cmd, os.FileMode(mode))
+				fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 			}
 		} else {
+			//NO EXISTE EL YEAR
+			f, err = os.Create("Dot/month.dot")
 			f.WriteString("digraph month {\n")
 			f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
 				"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
@@ -501,7 +631,31 @@ func GraphPedidos(w http.ResponseWriter, r *http.Request){
 			path, _ := exec.LookPath("dot")
 			cmd, _ := exec.Command(path, "-Tpng", "Dot/month.dot").Output()
 			mode := int(0777)
-			ioutil.WriteFile("Reportes/month.png", cmd, os.FileMode(mode))
+			ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\month.png", cmd, os.FileMode(mode))
+			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+			//NO EXISTE EL MES
+			f, err = os.Create("Dot/days.dot")
+			f.WriteString("digraph month {\n")
+			f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+				"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+				"No Existen Pedidos Dentro de ese Mes :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+			f.WriteString("}\n")
+			path, _ = exec.LookPath("dot")
+			cmd, _ = exec.Command(path, "-Tpng", "Dot/days.dot").Output()
+			mode = int(0777)
+			ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\days.png", cmd, os.FileMode(mode))
+			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
+			//NO EXISTE EL DIA CON SU DEPARTAMENTO
+			f, err = os.Create("Dot/exaxtday.dot")
+			f.WriteString("digraph month {\n")
+			f.WriteString("node [shape=Msquare, fontname=\"Bookman Old Style\", style=filled, " +
+				"fillcolor=lightpink];\nedge [dir=\"both\"]\nlabelloc=\"t\";\nlabel=\"" +
+				"No Existen Pedidos Dentro de ese Dia y Departamento :c\";\nfontsize=30;\nrankdir=\"LR\";\n")
+			f.WriteString("}\n")
+			path, _ = exec.LookPath("dot")
+			cmd, _ = exec.Command(path, "-Tpng", "Dot/exaxtday.dot").Output()
+			mode = int(0777)
+			ioutil.WriteFile("C:\\Users\\Angel Arteaga\\Documents\\GitHub\\EDD_VirtualMall_201901816\\Web\\VirtualMall\\src\\assets\\reportes\\exaxtday.png", cmd, os.FileMode(mode))
 			fmt.Fprint(w, "La gráfica fue realizada exitosamente!")
 		}
 	}
@@ -512,7 +666,13 @@ func CargarPedidos(w http.ResponseWriter, r *http.Request){
 	var Data ArchivoPedidos
 	json.Unmarshal(body, &Data)
 	pedidos := Data.Pedidos
+	fmt.Println("********************* CARRITO ***********************")
+	fmt.Println(Data)
 	fmt.Println("HASTA AQUI: ", "0")
+	//Reseteamos el carrito
+	Carrito.Inicio = nil
+	Carrito.len = 0
+	Carrito.Fin = nil
 	//RECORREMOS LOS PEDIDOS
 	for i :=0; i < len(pedidos); i++{
 		fmt.Println("************************* NUEVA ITERACION *************************")
@@ -751,6 +911,112 @@ func Errores(e error) {
 }
 
 /*****************************************************************************/
+//CLASE NODO ITEM
+type NodoItem struct {
+	Siguiente *NodoItem
+	Anterior *NodoItem
+	Dato item
+}
+//CLASE LISTA ITEM
+type ListaItem struct{
+	Inicio *NodoItem
+	Fin *NodoItem
+	len int
+}
+//INSERTAR
+func (l *ListaItem) Add(valor item){
+	nuevo := &NodoItem{nil,nil,valor}
+	if l.Inicio == nil{
+		l.Inicio = nuevo
+		l.Fin = nuevo
+	}else{
+		l.Fin.Siguiente = nuevo
+		nuevo.Anterior = l.Fin
+		l.Fin = nuevo
+	}
+	l.len++
+	fmt.Println("add:")
+	fmt.Println("")
+	l.print()
+}
+//ELIMINAR
+func (l *ListaItem) Delete(dato item){
+	Aux := l.Inicio
+	Encontrado := false
+	if Aux.Dato.Codigo == dato.Codigo{
+		if l.Inicio == l.Fin{
+			l.Inicio = nil
+			l.Fin = nil
+			l.len--
+		} else {
+			l.Inicio.Siguiente.Anterior = nil
+			l.Inicio = Aux.Siguiente
+			l.len--
+		}
+	} else {
+		for Aux != nil || Encontrado != true{
+			if dato.Codigo == Aux.Dato.Codigo{
+				Encontrado = true
+				if Aux == l.Fin{
+					Aux.Anterior.Siguiente = nil
+					l.len--
+				} else {
+					Aux.Anterior.Siguiente = Aux.Siguiente
+					Aux.Siguiente.Anterior = Aux.Anterior
+					l.len--
+				}
+			}
+			Aux = Aux.Siguiente
+		}
+	}
+	fmt.Println("delete:", l.len)
+	fmt.Println("")
+	l.print()
+}
+//ELIMINAR2
+func (l*ListaItem) Delete2(dato item){
+	tmp := l.Inicio
+	for tmp != nil {
+		if tmp.Dato.Codigo == dato.Codigo{
+			if tmp.Anterior == nil{
+				l.Inicio = tmp.Siguiente
+				l.len--
+			} else if tmp.Siguiente == nil{
+				l.Fin = tmp.Anterior
+				l.len--
+			} else {
+				tmp.Anterior.Siguiente = tmp.Siguiente
+				tmp.Siguiente.Anterior = tmp.Anterior
+				l.len--
+			}
+			break
+		}
+		tmp = tmp.Siguiente
+	}
+}
+//GET ARRAY
+func (l *ListaItem) GetArray() []item{
+	a := make([]item, l.len)
+	i := 0
+	Aux := l.Inicio
+	for Aux != nil{
+		a[i] = Aux.Dato
+		i++
+		Aux = Aux.Siguiente
+	}
+	return a
+}
+//PRINT
+func (l *ListaItem) print(){
+	tmp := l.Inicio
+	for tmp != nil{
+		fmt.Print(tmp.Dato.Codigo, "<->")
+		tmp = tmp.Siguiente
+	}
+	fmt.Println("")
+}
+
+/*****************************************************************************/
 //CLASE NODO INT
 type NodoInt struct {
 	Siguiente *NodoInt
@@ -760,14 +1026,14 @@ type NodoInt struct {
 	departamento string
 	calificacion int
 }
-//CLASE LISTA MATRIZ
+//CLASE LISTA INT
 type ListaInt struct{
 	Inicio *NodoInt
 	Fin *NodoInt
 	len int
 }
 //ADD
-//INSERTAR UN NODO MATRIZ
+//INSERTAR UN NODO INT
 func (l *ListaInt) Add(valor []CodigoX, tienda, departamento string, calificacion int){
 	nuevo := &NodoInt{nil,nil,valor, tienda, departamento, calificacion}
 	if l.Inicio == nil{
@@ -787,23 +1053,25 @@ func (l *ListaInt) GraphNodes()string{
 	temp := l.Inicio
 	for temp != nil{
 		cadena = cadena + "struct" + strconv.Itoa(cont)  + "[label=\""
-		fmt.Println("HOLA BB")
+		//fmt.Println("HOLA BB")
+		fmt.Println(temp.Dato)
 		for i := 0; i < len(temp.Dato); i++{
 			//OBTENEMOS LA INFORMACION DEL PRODUCTO
-			fmt.Println("HOLA BB2")
+			//fmt.Println("HOLA BB2")
 			name := temp.tienda
 			dep := temp.departamento
 			cal := temp.calificacion
 			cod := temp.Dato[i].Codigo
+			fmt.Println("Codigo actual: ",cod)
 			//Buscamos el codigo dentro de los productos:
 			for j := 0; j < ListaInventario.len; j++{
-				fmt.Println("HOLA BB3")
+				//fmt.Println("HOLA BB3")
 				NodoAct := ListaInventario.Get(j)
 				if NodoAct.tienda == name && NodoAct.departamento == dep && NodoAct.calificacion == cal{
 					ArbolAct := NodoAct.Dato
-					fmt.Println("HOLA BB4")
+					//fmt.Println("HOLA BB4")
 					if ArbolAct.exist(ArbolAct.root, cod) ==  true {
-						fmt.Println("HOLA BB5")
+						//fmt.Println("HOLA BB5")
 						product := ArbolAct.get(ArbolAct.root, cod)
 						cadena = cadena + "Producto: " + product.value.Nombre + "\\n"
 						cadena = cadena + "Precio: " + strconv.Itoa(int(product.value.Precio)) + "\\n"
@@ -814,10 +1082,10 @@ func (l *ListaInt) GraphNodes()string{
 					}
 				}
 			}
-			cadena = cadena + "];\n"
-			cont++
-			temp = temp.Siguiente
 		}
+		cadena = cadena + "\", fontcolor=\"aliceblue\"];\n"
+		cont++
+		temp = temp.Siguiente
 	}
 	cont = 0
 	temp = l.Inicio
@@ -1710,7 +1978,6 @@ func inOrden(temp *nodoAVL)  {
 		inOrden(temp.der)
 	}
 }
-
 func existe(temp *nodoAVL, indice int)bool{
 	if temp != nil {
 		if temp.indice == indice{
@@ -1723,7 +1990,6 @@ func existe(temp *nodoAVL, indice int)bool{
 	}
 	return false
 }
-
 func get(temp *nodoAVL, indice int)*nodoAVL{
 	if temp != nil{
 		if temp.indice == indice{
@@ -1738,7 +2004,6 @@ func get(temp *nodoAVL, indice int)*nodoAVL{
 	}
 	return nil
 }
-
 func graph(temp *nodoAVL)string{
 	etiqueta := ""
 	if temp.izq == nil && temp.der == nil{

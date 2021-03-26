@@ -8,4 +8,6 @@ fontsize=30;
 nodo2017 [ label ="2017"];
 nodo1999 [ label ="1999"];
 nodo2017->nodo1999
+nodo2021 [ label ="2021"];
+nodo2017->nodo2021
 }
